@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 21:02:31 by lamasson          #+#    #+#             */
-/*   Updated: 2023/09/26 23:24:39 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/09/29 15:42:25 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ int		Form::getGradeExec(void) const {
 }
 
 const char*	Form::GradeTooHighException::what(void) const throw() {
-	return (" grade, too high exception.");
+	return ("Form Grade too high exception.\n");
 }
 
 const char* Form::GradeTooLowException::what(void) const throw() {
-	return (" grade, too low exception.");
+	return ("Form Grade too low exception.\n");
 }
 
 void	Form::exceptionSign(void) const {

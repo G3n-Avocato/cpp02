@@ -6,16 +6,15 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 22:29:53 by lamasson          #+#    #+#             */
-/*   Updated: 2023/09/28 21:24:43 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/09/29 15:39:17 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
+#include <exception>
 #include <iostream>
-
-class Form;
 
 class	Bureaucrat {
 
@@ -26,29 +25,27 @@ class	Bureaucrat {
         Bureaucrat& operator=(Bureaucrat const &rhs);
         ~Bureaucrat(void);
 
-		std::string	const getName(void) const;
-		int	getGrade(void) const;
+		std::string	const getName(void) const ;
+		int	getGrade(void) const ;
 
-		void	upGrade();
+		void	upGrade() ;
 		void	downGrade();
-		void	signForm(Form const &src) const;
-		class	GradeTooHighException : public std::exeption {
+		void	signForm() const;
+
+		class GradeTooHighException : public std::exception {
 			public:
 				virtual const char* what() const throw();
-		}
-		class	GradeTooLowException : 
-
+		};
+		class GradeTooLowException : public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
+		
 	private:
 		std::string const	_name;
 		int					_grade;
-
-        void    exception(void);
-        void    GradeTooHighException(void);
-        void    GradeTooLowException(void);
 };
 
 std::ostream    &operator<<(std::ostream &o, Bureaucrat const &rhs);
 
 #endif
-
-// c'est la fonction sign de form qui appel la fontion besigned de bureaucrat, dnas les 2 exo il faut que je declare ma class dans la class mere, les try and catch doivent etre dans le main directement et non en tant que fonction membre 

@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 22:29:09 by lamasson          #+#    #+#             */
-/*   Updated: 2023/09/28 22:10:26 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/09/29 15:31:56 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int main(void) {
 			Bureaucrat  Alice;
 
         	std::cout << Alice << std::endl;
+			Alice.downGrade();
 		}
 		catch (Bureaucrat::GradeTooHighException& e) {
 			std::cout << e.what();
