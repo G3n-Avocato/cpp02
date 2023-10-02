@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 22:29:09 by lamasson          #+#    #+#             */
-/*   Updated: 2023/09/29 15:36:44 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:37:08 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,36 +115,35 @@ int main(void) {
 			std::cout << e.what();
 		}
 	}
-	
-
-
 	{
 		std::cout << std::endl;
         std::cout << "----- TEST 2.1 -----" << std::endl;
         std::cout << std::endl;
-    	
-		Bureaucrat	Joseph("Joseph", 6);
-		Bureaucrat	Steve("Steve", 5);
-		Form	Aff("A56", 5, 5);
+    
+		try {
+			Bureaucrat	Joseph("Joseph", 6);
+			Bureaucrat	Steve("Steve", 5);
+			Form	Aff("A56", 5, 5);
 
-        std::cout << std::endl;
-		Aff.beSigned(Joseph);
-        std::cout << std::endl;
-		Joseph.signForm(Aff);
-        
-		std::cout << std::endl;
-		Aff.beSigned(Steve);
-		Steve.signForm(Aff);
-        std::cout << std::endl;
+			Aff.beSigned(Joseph);
+			Aff.beSigned(Steve);
+			std::cout << Joseph;
+			std::cout << Steve;
+			std::cout << Aff;
+		}
+		catch (Bureaucrat::GradeTooHighException& e) {
+			std::cout << e.what();
+		}
+		catch (Bureaucrat::GradeTooLowException& e) {
+			std::cout << e.what();
+		}
+		catch (Form::GradeTooHighException& e) {
+			std::cout << e.what();
+		}
+		catch (Form::GradeTooLowException& e) {
+			std::cout << e.what();
+		}
 		
-		std::cout << Joseph;
-        std::cout << std::endl;
-
-		std::cout << Steve;
-        std::cout << std::endl;
-		
-		std::cout << Aff;
-        std::cout << std::endl;
 	}
 	{
 		std::cout << std::endl;

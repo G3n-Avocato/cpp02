@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 21:02:31 by lamasson          #+#    #+#             */
-/*   Updated: 2023/09/29 15:42:25 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:54:36 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 
 Form::Form(void): _name("default"), _gradeSign(1), _gradeExec(1) {
 	this->_signed = false;
-	this->exceptionSign();
-	this->exceptionExec();
 }
 
 Form::Form(std::string const name, int const Sign, int const Exec): _name(name), _gradeSign(Sign), _gradeExec(Exec) {
 	this->_signed = false;
-	this->exceptionSign();
-	this->exceptionExec();
+	if (Sign > 150 || Exec > 150)
+		throw GradeTooLowException();
+	else if (Sign < 1 || Exec < 1)
+		throw GradeTooHighException();
 }
 
 Form::Form(const Form &src): _name(src._name), _gradeSign(src._gradeSign), _gradeExec(src._gradeExec) {
@@ -41,16 +41,10 @@ Form::~Form(void) {
 }
 
 void	Form::beSigned(const Bureaucrat &src) {
-	try {
-		if (src.getGrade() <= this->_gradeSign)
-			this->_signed = true;
-		else
-			throw GradeTooLowException();
-	}
-	catch (GradeTooLowException& e) {
-		std::cout << src.getName() << ", " << src.getGrade() << e.what() << std::endl;
-		std::cout << "Grade -" << this->_gradeSign << "- is required." << std::endl;
-	}
+	if (src.getGrade() <= this->_gradeSign)
+		this->_signed = true;
+	else
+		throw GradeTooLowException();
 }
 
 std::string const Form::getName(void) const {
@@ -75,36 +69,6 @@ const char*	Form::GradeTooHighException::what(void) const throw() {
 
 const char* Form::GradeTooLowException::what(void) const throw() {
 	return ("Form Grade too low exception.\n");
-}
-
-void	Form::exceptionSign(void) const {
-	try {
-		if (this->_gradeSign > 150)
-			throw GradeTooLowException();
-		else if (this->_gradeSign < 1)
-			throw GradeTooHighException();
-	}
-	catch (GradeTooHighException& e) {
-		std::cout << this->_name << ", " << this->_gradeSign << e.what() << std::endl;
-	}
-	catch (GradeTooLowException& e) {
-		std::cout << this->_name << ", " << this->_gradeSign << e.what() << std::endl;
-	}
-}
-
-void	Form::exceptionExec(void) const {
-	try {
-		if (this->_gradeExec > 150)
-			throw GradeTooLowException();
-		else if (this->_gradeExec < 1)
-			throw GradeTooHighException();
-	}
-	catch (GradeTooHighException& e) {
-		std::cout << this->_name << ", " << this->_gradeExec << e.what() << std::endl;
-	}
-	catch (GradeTooLowException& e) {
-		std::cout << this->_name << ", " << this->_gradeExec << e.what() << std::endl;
-	}
 }
 
 std::ostream	&operator<<(std::ostream &o, Form const &rhs) {

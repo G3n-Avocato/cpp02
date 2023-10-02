@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 21:01:31 by lamasson          #+#    #+#             */
-/*   Updated: 2023/09/28 22:11:45 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:48:24 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ void    Bureaucrat::downGrade(void) {
 			throw GradeTooLowException();
 		else
 			this->_grade++;
+}
+
+void	Bureaucrat::signForm(void) const {
+	if ()
+
 }
 
 const char* Bureaucrat::GradeTooHighException::what(void) const throw() {

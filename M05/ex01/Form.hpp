@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 21:02:49 by lamasson          #+#    #+#             */
-/*   Updated: 2023/09/26 23:24:24 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/10/02 19:37:51 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,6 @@ class Form {
         int		getGradeSign(void) const;
         int		getGradeExec(void) const;
 
-    private:
-
-        std::string const _name;
-        bool    _signed;
-        const int   _gradeSign;
-        const int   _gradeExec;
-
 		class GradeTooHighException : public std::exception {
 			public:
 				virtual const char* what() const throw();
@@ -48,8 +41,13 @@ class Form {
 			public:
 				virtual const char* what() const throw();
 		};
-        void    exceptionSign(void) const;
-		void	exceptionExec(void) const;
+
+    private:
+
+        std::string const _name;
+        bool    _signed;
+        const int   _gradeSign;
+        const int   _gradeExec;
 };
 
 std::ostream&   operator<<(std::ostream &o, Form const &rhs);
