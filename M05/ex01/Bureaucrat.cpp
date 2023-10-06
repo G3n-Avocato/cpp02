@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 21:01:31 by lamasson          #+#    #+#             */
-/*   Updated: 2023/10/02 19:48:24 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/10/06 20:15:21 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ void	Bureaucrat::signForm(Form const &src) const {
 		std::cout << " signed " << src.getName() << std::endl;
 	else {
 		std::cout << " couldn't sign " << src.getName();
-		std::cout << " because the grade required for sign Form is : ";
-		std::cout << src.getGradeSign() << " and the grade of Bureaucrat is ";
+		std::cout << " because the grade required to sign is: ";
+		std::cout << src.getGradeSign() << " while the grade of this Bureaucrat is: ";
 		std::cout << this->_grade << std::endl;	
 	}
 }
