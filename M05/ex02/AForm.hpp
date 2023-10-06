@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,20 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-# define FORM_HPP
+#ifndef AFORM_HPP
+# define AFORM_HPP
 
 #include "Bureaucrat.hpp"
 
-class Form {
+class AForm {
     
     public:
         
-        Form(void);
-        Form(std::string const name, int const Sign, int const Exec);
-        Form(const Form &src);
-        Form&   operator=(const Form &rhs);
-        ~Form(void);
+        AForm(void);
+        AForm(std::string const name, int const Sign, int const Exec);
+        AForm(const AForm &src);
+        AForm&   operator=(const AForm &rhs);
+        ~AForm(void);
 
         void    beSigned(Bureaucrat const &src);
 
@@ -49,6 +49,6 @@ class Form {
         const int   _gradeExec;
 };
 
-std::ostream&   operator<<(std::ostream &o, Form const &rhs);
+std::ostream&   operator<<(std::ostream &o, AForm const &rhs);
 
 #endif

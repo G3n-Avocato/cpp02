@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
+#include "AForm.hpp"
 
-Form::Form(void): _name("default"), _gradeSign(1), _gradeExec(1) {
+AForm::AForm(void): _name("default"), _gradeSign(1), _gradeExec(1) {
 	this->_signed = false;
 }
 
-Form::Form(std::string const name, int const Sign, int const Exec): _name(name), _gradeSign(Sign), _gradeExec(Exec) {
+AForm::AForm(std::string const name, int const Sign, int const Exec): _name(name), _gradeSign(Sign), _gradeExec(Exec) {
 	this->_signed = false;
 	if (Sign > 150 || Exec > 150)
 		throw GradeTooLowException();
@@ -24,21 +24,21 @@ Form::Form(std::string const name, int const Sign, int const Exec): _name(name),
 		throw GradeTooHighException();
 }
 
-Form::Form(const Form &src): _name(src._name), _gradeSign(src._gradeSign), _gradeExec(src._gradeExec) {
+AForm::AForm(const AForm &src): _name(src._name), _gradeSign(src._gradeSign), _gradeExec(src._gradeExec) {
 	*this = src;
 }
 
-Form&	Form::operator=(const Form &rhs) {
+AForm&	AForm::operator=(const AForm &rhs) {
 	if (this != &rhs) {
 		this->_signed = rhs._signed;
 	}
 	return (*this);
 }
 
-Form::~Form(void) {
+AForm::~AForm(void) {
 }
 
-void	Form::beSigned(const Bureaucrat &src) {
+void	AForm::beSigned(const Bureaucrat &src) {
 	if (src.getGrade() <= this->_gradeSign)
 		this->_signed = true;
 	src.signForm(*this);
@@ -46,31 +46,31 @@ void	Form::beSigned(const Bureaucrat &src) {
 		throw GradeTooLowException();
 }
 
-std::string const Form::getName(void) const {
+std::string const AForm::getName(void) const {
 	return (this->_name);
 }
 
-bool	Form::getBool(void) const {
+bool	AForm::getBool(void) const {
 	return (this->_signed);
 }
 
-int		Form::getGradeSign(void) const {
+int		AForm::getGradeSign(void) const {
 	return (this->_gradeSign);
 }
 
-int		Form::getGradeExec(void) const {
+int		AForm::getGradeExec(void) const {
 	return (this->_gradeExec);
 }
 
-const char*	Form::GradeTooHighException::what(void) const throw() {
+const char*	AForm::GradeTooHighException::what(void) const throw() {
 	return ("Form Grade too high exception.\n");
 }
 
-const char* Form::GradeTooLowException::what(void) const throw() {
+const char* AForm::GradeTooLowException::what(void) const throw() {
 	return ("Form Grade too low exception.\n");
 }
 
-std::ostream	&operator<<(std::ostream &o, Form const &rhs) {
+std::ostream	&operator<<(std::ostream &o, AForm const &rhs) {
 	o << rhs.getName();
 	o << " form, grade to sign ";
 	o << rhs.getGradeSign();

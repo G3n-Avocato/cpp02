@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat(void) : _name("default"), _grade(150) {
 }
@@ -59,7 +59,7 @@ void    Bureaucrat::downGrade(void) {
 			this->_grade++;
 }
 
-void	Bureaucrat::signForm(Form const &src) const {
+void	Bureaucrat::signForm(AForm const &src) const {
 	std::cout << this->_name;
 	if (src.getBool())
 		std::cout << " signed " << src.getName() << std::endl;

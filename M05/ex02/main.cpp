@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 int main(void) {
     {
@@ -123,7 +123,7 @@ int main(void) {
 		try {
 			Bureaucrat	Joseph("Joseph", 6);
 			Bureaucrat	Steve("Steve", 5);
-			Form	Aff("A56", 5, 5);
+			AForm	Aff("A56", 5, 5);
 
 			std::cout << Joseph;
 			std::cout << Steve;
@@ -136,10 +136,10 @@ int main(void) {
 		catch (Bureaucrat::GradeTooLowException& e) {
 			std::cout << e.what();
 		}
-		catch (Form::GradeTooHighException& e) {
+		catch (AForm::GradeTooHighException& e) {
 			std::cout << e.what();
 		}
-		catch (Form::GradeTooLowException& e) {
+		catch (AForm::GradeTooLowException& e) {
 			std::cout << e.what();
 		}
 		
@@ -151,8 +151,8 @@ int main(void) {
     		
 		try {
 			Bureaucrat	Boss("Boss", 1);
-			Form	Aff("C56", 1, 10);
-			Form	Bff(Aff);
+			AForm	Aff("C56", 1, 10);
+			AForm	Bff(Aff);
 
 			std::cout << Bff;
 			std::cout << Aff;
@@ -169,10 +169,10 @@ int main(void) {
 		catch (Bureaucrat::GradeTooLowException& e) {
 			std::cout << e.what();
 		}
-		catch (Form::GradeTooHighException& e) {
+		catch (AForm::GradeTooHighException& e) {
 			std::cout << e.what();
 		}
-		catch (Form::GradeTooLowException& e) {
+		catch (AForm::GradeTooLowException& e) {
 			std::cout << e.what();
 		}
 	}
@@ -183,10 +183,10 @@ int main(void) {
     		
 		try {
 
-			Form	Aff;
+			AForm	Aff;
 	
 			std::cout << Aff;
-			Form	Bff("WH.56", 0, 5);
+			AForm	Bff("WH.56", 0, 5);
 
 			std::cout << Bff;
 
@@ -197,10 +197,10 @@ int main(void) {
 		catch (Bureaucrat::GradeTooLowException& e) {
 			std::cout << e.what();
 		}
-		catch (Form::GradeTooHighException& e) {
+		catch (AForm::GradeTooHighException& e) {
 			std::cout << e.what();
 		}
-		catch (Form::GradeTooLowException& e) {
+		catch (AForm::GradeTooLowException& e) {
 			std::cout << e.what();
 		}
 	}
@@ -211,15 +211,15 @@ int main(void) {
     		
 		try {
 
-			Form	Aff;
+			AForm	Aff;
 			Bureaucrat	Assist("Assist", 1);
 	
 			std::cout << Aff;
 			Aff.beSigned(Assist);
 			std::cout << Aff;
 
-			Form	Bff("WH.56", 5, 0);
-			Form	Cff("WH.57", 151, 1);
+			AForm	Bff("WH.56", 5, 0);
+			AForm	Cff("WH.57", 151, 1);
 
 			std::cout << Bff;
 
@@ -230,10 +230,10 @@ int main(void) {
 		catch (Bureaucrat::GradeTooLowException& e) {
 			std::cout << e.what();
 		}
-		catch (Form::GradeTooHighException& e) {
+		catch (AForm::GradeTooHighException& e) {
 			std::cout << e.what();
 		}
-		catch (Form::GradeTooLowException& e) {
+		catch (AForm::GradeTooLowException& e) {
 			std::cout << e.what();
 		}
 	}
