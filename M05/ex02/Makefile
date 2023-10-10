@@ -6,18 +6,21 @@
 #    By: lamasson <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/22 22:27:18 by lamasson          #+#    #+#              #
-#    Updated: 2023/09/22 22:28:57 by lamasson         ###   ########.fr        #
+#    Updated: 2023/10/09 19:38:43 by lamasson         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= ./Form
+NAME			= ./Form++
 CXX				= c++
 CXXFLAGS		= -Wall -Wextra -Werror -std=c++98 -g3
 RM				= rm -rf
 
 SRC				= main.cpp \
 				  Bureaucrat.cpp \
-				  AForm.cpp
+				  AForm.cpp \
+				  ShrubberyCreationForm.cpp \
+				  RobotomyRequestForm.cpp \
+				  PresidentialPardonForm.cpp
 
 OBJ				= ${SRC:%.cpp=%.o}
 

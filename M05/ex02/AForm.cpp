@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AForm.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 21:02:31 by lamasson          #+#    #+#             */
-/*   Updated: 2023/10/02 19:54:36 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/10/09 19:34:40 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ AForm::~AForm(void) {
 void	AForm::beSigned(const Bureaucrat &src) {
 	if (src.getGrade() <= this->_gradeSign)
 		this->_signed = true;
-	src.signForm(*this);
 	if (!this->_signed)
 		throw GradeTooLowException();
 }
@@ -68,6 +67,10 @@ const char*	AForm::GradeTooHighException::what(void) const throw() {
 
 const char* AForm::GradeTooLowException::what(void) const throw() {
 	return ("Form Grade too low exception.\n");
+}
+
+const char* AForm::UnsignedFormException::what(void) const throw() {
+	return ("Unsigned Form exception.\n");
 }
 
 std::ostream	&operator<<(std::ostream &o, AForm const &rhs) {

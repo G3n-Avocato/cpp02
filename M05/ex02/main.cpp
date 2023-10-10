@@ -6,15 +6,18 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 22:29:09 by lamasson          #+#    #+#             */
-/*   Updated: 2023/10/02 19:37:08 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/10/09 19:50:11 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 int main(void) {
-    {
+    /*{
         std::cout << std::endl;
         std::cout << "----- TEST 1 -----" << std::endl;
         std::cout << std::endl;
@@ -236,6 +239,32 @@ int main(void) {
 		catch (AForm::GradeTooLowException& e) {
 			std::cout << e.what();
 		}
+	}*/
+	{
+		std::cout << "----- Test 1 -----" << std::endl;
+		Bureaucrat Boss("Boss", 1);
+		AForm*	Su = new ShrubberyCreationForm("maison");
+
+		Boss.signForm(*Su);
+		std::cout << std::endl;
+		Boss.executeForm(*Su);
+		std::cout << std::endl;
+		std::cout << *Su << std::endl;
+	}
+	{
+		std::cout << "----- Test 2 -----" << std::endl;
+		Bureaucrat	Steve("Steve", 10);
+		AForm*	Tu = new RobotomyRequestForm("saucisse");
+
+		Steve.executeForm(*Tu);
+		std::cout << std::endl;
+		std::cout << *Tu << std::endl;
+		Steve.signForm(*Tu);
+		std::cout << std::endl;
+		Steve.executeForm(*Tu);
+		std::cout << std::endl;
+		std::cout << *Tu << std::endl;
+
 	}
 	return (0);
 }

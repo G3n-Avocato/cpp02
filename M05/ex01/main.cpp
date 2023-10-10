@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 22:29:09 by lamasson          #+#    #+#             */
-/*   Updated: 2023/10/02 19:37:08 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/10/09 19:32:21 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ int main(void) {
 			std::cout << Joseph;
 			std::cout << Steve;
 			std::cout << Aff;
-			Aff.beSigned(Joseph);
+			Joseph.signForm(Aff);
 		}
 		catch (Bureaucrat::GradeTooHighException& e) {
 			std::cout << e.what();
@@ -157,7 +157,7 @@ int main(void) {
 			std::cout << Bff;
 			std::cout << Aff;
 			std::cout << Boss;
-			Bff.beSigned(Boss);
+			Boss.signForm(Bff);
 			std::cout << Aff;
 			Aff = Bff;
 			std::cout << Aff;
@@ -215,7 +215,7 @@ int main(void) {
 			Bureaucrat	Assist("Assist", 1);
 	
 			std::cout << Aff;
-			Aff.beSigned(Assist);
+			Assist.signForm(Aff);
 			std::cout << Aff;
 
 			Form	Bff("WH.56", 5, 0);

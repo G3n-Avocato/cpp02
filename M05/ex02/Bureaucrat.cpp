@@ -6,12 +6,13 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 21:01:31 by lamasson          #+#    #+#             */
-/*   Updated: 2023/10/06 20:15:11 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/10/09 19:35:56 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include <exception>
 
 Bureaucrat::Bureaucrat(void) : _name("default"), _grade(150) {
 }
@@ -59,15 +60,23 @@ void    Bureaucrat::downGrade(void) {
 			this->_grade++;
 }
 
-void	Bureaucrat::signForm(AForm const &src) const {
-	std::cout << this->_name;
-	if (src.getBool())
-		std::cout << " signed " << src.getName() << std::endl;
-	else {
-		std::cout << " couldn't sign " << src.getName();
-		std::cout << " because the grade required to sign is: ";
-		std::cout << src.getGradeSign() << " while the grade of this Bureaucrat is: ";
-		std::cout << this->_grade << std::endl;	
+void	Bureaucrat::signForm(AForm &src) const {
+	try {
+		src.beSigned(*this);
+		std::cout << this->_name << " signed " << src.getName() << std::endl;
+	}
+	catch (std::exception& e) {
+		std::cout << this->_name << " couldn't sign " << src.getName() << " because " << e.what();
+	}
+}
+
+void	Bureaucrat::executeForm(AForm const &form) const {
+	try {
+		form.execute(*this);
+		std::cout << this->_name << " executed " << form.getName() << std::endl;
+	}
+	catch (std::exception& e) {
+		std::cout << this->_name << " couldn't execute " << form.getName() << " because " << e.what();
 	}
 }
 

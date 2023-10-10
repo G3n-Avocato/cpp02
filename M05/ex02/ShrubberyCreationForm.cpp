@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 20:19:18 by lamasson          #+#    #+#             */
-/*   Updated: 2023/10/06 21:47:32 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/10/09 17:39:53 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,13 @@
 #include <iostream>
 #include <fstream>
 
-ShrubberyCreationForm::ShrubberyCreationForm(void) : _target("default"), AForm() {
-
-	std::ofstream	file_def(_target + "_shrubbery");
-
-	file_def << "default" << std::endl;
-	file_def << "default" << std::endl;
-	file_def << "default" << std::endl;
-	file_def.close();
+ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm(), _target("default") {
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : _target(target), AForm("Shrubbery", 145, 137) {
-	
-	std::ofstream	file(_target + "_shrubbery");
-
-	file << "ASCII trees" << std::endl;
-	file << "ASCII trees" << std::endl;
-	file << "ASCII trees" << std::endl;
-	file << "ASCII trees" << std::endl;
-	file.close();
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("Shrubbery", 145, 137), _target(target) {
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src) : _target(src._target), AForm(src) {
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src) : AForm(src), _target(src._target) {
 	*this = src;
 }
 
@@ -48,3 +33,18 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 ShrubberyCreationForm::~ShrubberyCreationForm(void) {
 }
 
+void	ShrubberyCreationForm::execute(const Bureaucrat &executor) const {
+	if (!this->getBool())
+		throw UnsignedFormException();
+	else if (executor.getGrade() > this->getGradeExec())
+		throw GradeTooLowException();
+	
+	std::string str = _target + "_shrubbery";
+	std::ofstream	file(str.c_str());
+
+	file << "ASCII trees" << std::endl;
+	file << "ASCII trees" << std::endl;
+	file << "ASCII trees" << std::endl;
+	file << "ASCII trees" << std::endl;
+	file.close();
+}
