@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 20:19:18 by lamasson          #+#    #+#             */
-/*   Updated: 2023/10/09 17:39:53 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/10/12 23:53:00 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,11 @@ void	ShrubberyCreationForm::execute(const Bureaucrat &executor) const {
 	std::string str = _target + "_shrubbery";
 	std::ofstream	file(str.c_str());
 
-	file << "ASCII trees" << std::endl;
-	file << "ASCII trees" << std::endl;
-	file << "ASCII trees" << std::endl;
-	file << "ASCII trees" << std::endl;
+	file << "    /\\         /\\   " << std::endl;
+    file << "   /\\*\\       /\\*\\   " << std::endl;
+	file << "  /\\O\\*\\     /\\O\\*\\   " << std::endl;
+	file << " /*/\\/\\/\\   /*/\\/\\/\\  " << std::endl;
+	file << "    ||         ||    " << std::endl;
+	file << "    ||         ||    " << std::endl;
 	file.close();
 }

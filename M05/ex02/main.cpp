@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 22:29:09 by lamasson          #+#    #+#             */
-/*   Updated: 2023/10/09 19:50:11 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/10/13 00:03:58 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "RobotomyRequestForm.hpp"
 
 int main(void) {
-    /*{
+    {
         std::cout << std::endl;
         std::cout << "----- TEST 1 -----" << std::endl;
         std::cout << std::endl;
@@ -108,8 +108,8 @@ int main(void) {
         	Jeanne.upGrade();
         	std::cout << Jeanne << std::endl;
         	std::cout << Vee << std::endl;
-		Johny = Vee;
-		std::cout << Johny << std::endl;
+			Johny = Vee;
+			std::cout << Johny << std::endl;
 		}
 		catch (Bureaucrat::GradeTooHighException& e) {
 			std::cout << e.what();
@@ -117,154 +117,121 @@ int main(void) {
 		catch (Bureaucrat::GradeTooLowException& e) {
 			std::cout << e.what();
 		}
-	}
-	{
-		std::cout << std::endl;
-        std::cout << "----- TEST 2.1 -----" << std::endl;
-        std::cout << std::endl;
-    
-		try {
-			Bureaucrat	Joseph("Joseph", 6);
-			Bureaucrat	Steve("Steve", 5);
-			AForm	Aff("A56", 5, 5);
-
-			std::cout << Joseph;
-			std::cout << Steve;
-			std::cout << Aff;
-			Aff.beSigned(Joseph);
-		}
-		catch (Bureaucrat::GradeTooHighException& e) {
-			std::cout << e.what();
-		}
-		catch (Bureaucrat::GradeTooLowException& e) {
-			std::cout << e.what();
-		}
-		catch (AForm::GradeTooHighException& e) {
-			std::cout << e.what();
-		}
-		catch (AForm::GradeTooLowException& e) {
-			std::cout << e.what();
-		}
-		
-	}
-	{
-	std::cout << std::endl;
-        std::cout << "----- TEST 2.2 -----" << std::endl;
-        std::cout << std::endl;
-    		
-		try {
-			Bureaucrat	Boss("Boss", 1);
-			AForm	Aff("C56", 1, 10);
-			AForm	Bff(Aff);
-
-			std::cout << Bff;
-			std::cout << Aff;
-			std::cout << Boss;
-			Bff.beSigned(Boss);
-			std::cout << Aff;
-			Aff = Bff;
-			std::cout << Aff;
-
-		}
-		catch (Bureaucrat::GradeTooHighException& e) {
-			std::cout << e.what();
-		}
-		catch (Bureaucrat::GradeTooLowException& e) {
-			std::cout << e.what();
-		}
-		catch (AForm::GradeTooHighException& e) {
-			std::cout << e.what();
-		}
-		catch (AForm::GradeTooLowException& e) {
-			std::cout << e.what();
-		}
-	}
-	{
-	std::cout << std::endl;
-        std::cout << "----- TEST 2.3 -----" << std::endl;
-        std::cout << std::endl;
-    		
-		try {
-
-			AForm	Aff;
-	
-			std::cout << Aff;
-			AForm	Bff("WH.56", 0, 5);
-
-			std::cout << Bff;
-
-		}
-		catch (Bureaucrat::GradeTooHighException& e) {
-			std::cout << e.what();
-		}
-		catch (Bureaucrat::GradeTooLowException& e) {
-			std::cout << e.what();
-		}
-		catch (AForm::GradeTooHighException& e) {
-			std::cout << e.what();
-		}
-		catch (AForm::GradeTooLowException& e) {
-			std::cout << e.what();
-		}
-	}
-	{
-	std::cout << std::endl;
-        std::cout << "----- TEST 2.4 -----" << std::endl;
-        std::cout << std::endl;
-    		
-		try {
-
-			AForm	Aff;
-			Bureaucrat	Assist("Assist", 1);
-	
-			std::cout << Aff;
-			Aff.beSigned(Assist);
-			std::cout << Aff;
-
-			AForm	Bff("WH.56", 5, 0);
-			AForm	Cff("WH.57", 151, 1);
-
-			std::cout << Bff;
-
-		}
-		catch (Bureaucrat::GradeTooHighException& e) {
-			std::cout << e.what();
-		}
-		catch (Bureaucrat::GradeTooLowException& e) {
-			std::cout << e.what();
-		}
-		catch (AForm::GradeTooHighException& e) {
-			std::cout << e.what();
-		}
-		catch (AForm::GradeTooLowException& e) {
-			std::cout << e.what();
-		}
-	}*/
-	{
-		std::cout << "----- Test 1 -----" << std::endl;
-		Bureaucrat Boss("Boss", 1);
-		AForm*	Su = new ShrubberyCreationForm("maison");
-
-		Boss.signForm(*Su);
-		std::cout << std::endl;
-		Boss.executeForm(*Su);
-		std::cout << std::endl;
-		std::cout << *Su << std::endl;
 	}
 	{
 		std::cout << "----- Test 2 -----" << std::endl;
-		Bureaucrat	Steve("Steve", 10);
-		AForm*	Tu = new RobotomyRequestForm("saucisse");
+		std::cout << std::endl;
+		try {
+				Bureaucrat Jo("Jo", 150);
+	
+				AForm	*Tu = new ShrubberyCreationForm("Lokroom");
 
-		Steve.executeForm(*Tu);
+				std::cout << Jo << std::endl;
+				std::cout << *Tu << std::endl;
+				Jo.signForm(*Tu);
+				delete Tu ;
+		}
+		catch (Bureaucrat::GradeTooHighException& e) {
+			std::cout << e.what();
+		}
+		catch (Bureaucrat::GradeTooLowException& e) {
+			std::cout << e.what();
+		}
+	}
+	{
 		std::cout << std::endl;
-		std::cout << *Tu << std::endl;
-		Steve.signForm(*Tu);
+		std::cout << "----- Test 2.1 -----" << std::endl;
 		std::cout << std::endl;
-		Steve.executeForm(*Tu);
-		std::cout << std::endl;
-		std::cout << *Tu << std::endl;
+		try {
+			Bureaucrat Yos("Yos", 151);
+			AForm *Yu = new RobotomyRequestForm("Lokroom");
 
+			std::cout << Yos << std::endl;
+			std::cout << Yu << std::endl;
+		}
+		catch (Bureaucrat::GradeTooHighException& e) {
+			std::cout << e.what();
+		}
+		catch (Bureaucrat::GradeTooLowException& e) {
+			std::cout << e.what();
+		}
+	}
+	{
+		std::cout << std::endl;
+		std::cout << "----- Test 3 -----" << std::endl;
+		std::cout << std::endl;
+		try {
+			Bureaucrat Boss("Boss", 1);
+			AForm*	Su = new ShrubberyCreationForm("maison");
+	
+			Boss.signForm(*Su);
+			std::cout << std::endl;
+			Boss.executeForm(*Su);
+			std::cout << std::endl;
+			std::cout << *Su << std::endl;
+			delete Su ;
+		}
+		catch (Bureaucrat::GradeTooHighException& e) {
+			std::cout << e.what();
+		}
+		catch (Bureaucrat::GradeTooLowException& e) {
+			std::cout << e.what();
+		}
+	}
+	{
+		std::cout << "----- Test 4 -----" << std::endl;
+		std::cout << std::endl;
+		try {
+			Bureaucrat	Steve("Steve", 10);
+			AForm*	Tu = new RobotomyRequestForm("saucisse");
+	
+			Steve.executeForm(*Tu);
+			std::cout << std::endl;
+			std::cout << *Tu << std::endl;
+			Steve.signForm(*Tu);
+			std::cout << std::endl;
+			Steve.executeForm(*Tu);
+			std::cout << std::endl;
+			std::cout << *Tu << std::endl;
+			delete Tu ;
+		}
+		catch (Bureaucrat::GradeTooHighException& e) {
+			std::cout << e.what();
+		}
+		catch (Bureaucrat::GradeTooLowException& e) {
+			std::cout << e.what();
+		}
+	}
+	{
+		std::cout << "----- Test 5 -----" << std::endl;
+		std::cout << std::endl;
+		try {
+			
+			Bureaucrat	Jules("Jules", 4);
+			Bureaucrat	Ru("Ru", 25);
+			AForm	*Wu = new PresidentialPardonForm("Rick");
+			AForm	*Yu = new ShrubberyCreationForm("Wu");
+
+			std::cout << *Wu << std::endl;
+			std::cout << Jules << std::endl;
+			std::cout << Ru << std::endl;
+			Ru.signForm(*Wu);
+			std::cout << std::endl;
+			Jules.executeForm(*Wu);
+			std::cout << std::endl;
+			std::cout << *Yu << std::endl;
+			Yu = Wu;
+			std::cout << *Yu << std::endl;
+			Jules.executeForm(*Yu);
+			delete Wu ;
+			delete Yu ;
+		}
+		catch (Bureaucrat::GradeTooHighException& e) {
+			std::cout << e.what();
+		}
+		catch (Bureaucrat::GradeTooLowException& e) {
+			std::cout << e.what();
+		}
 	}
 	return (0);
 }
