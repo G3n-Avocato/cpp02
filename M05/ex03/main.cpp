@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/22 22:29:09 by lamasson          #+#    #+#             */
-/*   Updated: 2023/10/15 15:25:42 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/10/17 22:11:09 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "Intern.hpp"
 
 int main(void) {
     {
@@ -263,6 +264,120 @@ int main(void) {
 			std::cout << tmp << std::endl;
 			tmp = tau;
 			std::cout << tmp << std::endl;
+		}
+		catch (Bureaucrat::GradeTooHighException& e) {
+			std::cout << e.what();
+		}
+		catch (Bureaucrat::GradeTooLowException& e) {
+			std::cout << e.what();
+		}
+	}
+	{
+		std::cout << "----- Test 7 -----" << std::endl;
+		std::cout << std::endl;
+		try {
+			Intern	anybody;
+			AForm*	form_list;
+
+			Bureaucrat	You("You", 1);
+
+			form_list = anybody.makeForm("robotomy request", "bender");
+			std::cout << *form_list << std::endl;
+			You.signForm(*form_list);
+			std::cout << std::endl;
+			You.executeForm(*form_list);
+			
+			delete form_list ;
+		}
+		catch (Intern::FormFileException& e) {
+			std::cout << e.what();
+		}
+		catch (Bureaucrat::GradeTooHighException& e) {
+			std::cout << e.what();
+		}
+		catch (Bureaucrat::GradeTooLowException& e) {
+			std::cout << e.what();
+		}
+	}
+	{
+		std::cout << std::endl;
+		std::cout << "----- Test 7.1 -----" << std::endl;
+		std::cout << std::endl;
+		try {
+			Intern	anybody;
+			AForm*	form_list;
+
+			Bureaucrat	You("You", 1);
+
+			form_list = anybody.makeForm("shrubbery creation", "louvre");
+			
+			std::cout << *form_list << std::endl;
+			You.signForm(*form_list);
+			std::cout << std::endl;
+			You.executeForm(*form_list);
+
+			delete form_list ;
+		}
+		catch (Intern::FormFileException& e) {
+			std::cout << e.what();
+		}
+		catch (Bureaucrat::GradeTooHighException& e) {
+			std::cout << e.what();
+		}
+		catch (Bureaucrat::GradeTooLowException& e) {
+			std::cout << e.what();
+		}
+	}
+	{
+		std::cout << std::endl;
+		std::cout << "----- Test 7.2 -----" << std::endl;
+		std::cout << std::endl;
+		try {
+			Intern	anybody;
+			AForm*	form_list;
+
+			Bureaucrat	You("You", 1);
+
+			form_list = anybody.makeForm("presidential pardon", "Rico");
+			
+			std::cout << *form_list << std::endl;
+			You.signForm(*form_list);
+			std::cout << std::endl;
+			You.executeForm(*form_list);
+
+			delete form_list ;
+		}
+		catch (Intern::FormFileException& e) {
+			std::cout << e.what();
+		}
+		catch (Bureaucrat::GradeTooHighException& e) {
+			std::cout << e.what();
+		}
+		catch (Bureaucrat::GradeTooLowException& e) {
+			std::cout << e.what();
+		}
+	}
+	{
+		std::cout << std::endl;
+		std::cout << "----- Test 7.3 -----" << std::endl;
+		std::cout << std::endl;
+		try {
+			Intern	anybody;
+			AForm*	form_list;
+
+			Bureaucrat	You("You", 1);
+
+			form_list = anybody.makeForm("lettre de demition", "Boss lol");
+			
+			std::cout << *form_list << std::endl;
+			You.signForm(*form_list);
+			std::cout << std::endl;
+			You.executeForm(*form_list);
+
+			delete form_list ;
+		}
+		catch (Intern::FormFileException& e) {
+			std::cout << e.what();
 		}
 		catch (Bureaucrat::GradeTooHighException& e) {
 			std::cout << e.what();
