@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
+/*   ATarget.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 21:23:49 by lamasson          #+#    #+#             */
-/*   Updated: 2023/10/18 11:47:32 by lamasson         ###   ########.fr       */
+/*   Created: 2023/10/19 14:40:21 by lamasson          #+#    #+#             */
+/*   Updated: 2023/10/19 15:09:40 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCALARCONVERTER_HPP
-# define SCALARCONVERTER_HPP
+#ifndef ATARGET_HPP
+# define ATARGET_HPP
 
 #include <string>
 
-class	ScalarConverter {
+class ASpell;
+
+class ATarget {
 
 	public:
-		ScalarConverter(void);
-		ScalarConverter(const ScalarConverter &src);
-		ScalarConverter& operator=(const ScalarConverter &rhs);
-		~ScalarConverter(void);
-		
-		static void	convert(std::string const argv);
-	private:
-		char	_c;
-		int		_i;
-		float	_f;
-		double	_d;
+		ATarget(void);
+		ATarget(std::string const& type);
+		ATarget(const ATarget& src);
+		ATarget& operator=(const ATarget& rhs);
+		virtual ~ATarget(void);
+
+		std::string const&	getType(void) const;
+
+		virtual ATarget*	clone(void) const = 0;
+
+		void	getHitBySpell(const ASpell& hit) const;
+
+	protected:
+		std::string	_type;
 };
 
 #endif

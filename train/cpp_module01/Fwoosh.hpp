@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Fwoosh.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 21:21:23 by lamasson          #+#    #+#             */
-/*   Updated: 2023/10/18 11:44:17 by lamasson         ###   ########.fr       */
+/*   Created: 2023/10/19 15:12:30 by lamasson          #+#    #+#             */
+/*   Updated: 2023/10/19 15:13:45 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#ifndef FWOOSH_HPP
+# define FWOOSH_HPP
 
-int main(int argc, char **argv)
-{
-	if (argc != 2)
-		return (1);
+#include "ASpell.hpp"
 
+class	Fwoosh : public ASpell {
 
+	public:
 
+	private:
 
+};
 
-	return (0);
-}
+#endif
