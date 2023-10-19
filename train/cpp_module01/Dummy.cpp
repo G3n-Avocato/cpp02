@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fwoosh.hpp                                         :+:      :+:    :+:   */
+/*   Dummy.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 15:12:30 by lamasson          #+#    #+#             */
-/*   Updated: 2023/10/20 00:10:57 by lamasson         ###   ########.fr       */
+/*   Created: 2023/10/20 00:17:49 by lamasson          #+#    #+#             */
+/*   Updated: 2023/10/20 00:21:08 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FWOOSH_HPP
-# define FWOOSH_HPP
+#include "Dummy.hpp"
 
-#include "ASpell.hpp"
+Dummy::Dummy(void) : ATarget("Target Practice Dummy") {
+	this->_type = "Target Practice Dummy";
+}
 
-class	Fwoosh : public ASpell {
+Dummy::Dummy(const Dummy& src) : ATarget(src) {
+	*this = src;
+}
 
-	public:
-		Fwoosh(void);
-		Fwoosh(const Fwoosh& src);
-		Fwoosh&	operator=(const Fwoosh& rhs);
-		~Fwoosh(void);
-		
-		Fwoosh*	clone(void) const;
-};
+Dummy&	Dummy::operator=(const Dummy &rhs) {
+	(void)rhs;
+	return(*this);
+}
 
-#endif
+Dummy::~Dummy(void) {
+}
+
+Dummy*	Dummy::clone(void) const {
+	Dummy*	tmp = new Dummy();
+	return (tmp);
+}

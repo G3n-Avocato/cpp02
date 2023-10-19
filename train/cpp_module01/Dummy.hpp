@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Fwoosh.hpp                                         :+:      :+:    :+:   */
+/*   Dummy.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/19 15:12:30 by lamasson          #+#    #+#             */
-/*   Updated: 2023/10/20 00:10:57 by lamasson         ###   ########.fr       */
+/*   Created: 2023/10/20 00:14:16 by lamasson          #+#    #+#             */
+/*   Updated: 2023/10/20 00:16:44 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FWOOSH_HPP
-# define FWOOSH_HPP
+#ifndef DUMMY_HPP
+# define DUMMY_HPP
 
-#include "ASpell.hpp"
+#include "ATarget.hpp"
 
-class	Fwoosh : public ASpell {
-
+class	Dummy : public ATarget {
 	public:
-		Fwoosh(void);
-		Fwoosh(const Fwoosh& src);
-		Fwoosh&	operator=(const Fwoosh& rhs);
-		~Fwoosh(void);
-		
-		Fwoosh*	clone(void) const;
+		Dummy(void);
+		Dummy(const Dummy& src);
+		Dummy&	operator=(const Dummy& rhs);
+		~Dummy(void);
+
+		Dummy*	clone(void) const;
 };
 
 #endif
