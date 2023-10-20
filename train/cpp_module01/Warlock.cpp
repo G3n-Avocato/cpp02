@@ -6,20 +6,26 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:48:40 by lamasson          #+#    #+#             */
-/*   Updated: 2023/10/19 13:16:28 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/10/20 19:09:53 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Warlock.hpp"
-
-Warlock::Warlock(void) {
-}
+#include <cstring>
+#include <string>
 
 Warlock::Warlock(std::string const &name, std::string const &title) : _name(name), _title(title) {
+	this->_size = 0;
+	this->_learnSpell = NULL;
 	std::cout << this->_name << ": This looks like another boring day." << std::endl;
 }
 
 Warlock::~Warlock(void) {
+	if (this->_learnSpell) {
+		for (int i = 0; this->_learnSpell[i]; i++)
+			delete this->_learnSpell[i];
+	}
+	delete [] this->_learnSpell;
 	std::cout << this->_name << ": My job here is done!" << std::endl;
 }
 
@@ -36,4 +42,24 @@ void	Warlock::setTitle(const std::string &title) {
 
 void	Warlock::introduce(void) const {
 	std::cout << this->_name << ": I am " << this->_name << ", " << this->_title << "!" << std::endl;
+}
+
+void	Warlock::learnSpell(ASpell *learn) {
+	int i = 0;
+
+	while (this->_learnSpell && this->_learnSpell[i])
+		i++;
+	this->_learnSpell[i] = learn;
+}
+
+void	Warlock::forgetSpell(const std::string forget) {
+	int i = 0;
+
+	while (strcmp(this->_learnSpell[i]->getName().c_str(), forget.c_str()) != 0)
+		i++;
+
+}
+
+void	Warlock::launchSpell(std::string const spell, ATarget &tar) {
+
 }
