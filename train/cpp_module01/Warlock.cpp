@@ -6,11 +6,12 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:48:40 by lamasson          #+#    #+#             */
-/*   Updated: 2023/10/20 19:09:53 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/10/23 16:51:05 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Warlock.hpp"
+#include "ASpell.hpp"
 #include <cstring>
 #include <string>
 
@@ -45,21 +46,73 @@ void	Warlock::introduce(void) const {
 }
 
 void	Warlock::learnSpell(ASpell *learn) {
-	int i = 0;
+	this->_size++;
+	
+	ASpell**	tmp = new ASpell*[this->_size];
 
-	while (this->_learnSpell && this->_learnSpell[i])
-		i++;
-	this->_learnSpell[i] = learn;
+	if (this->_learnSpell) {
+		for (int i = 0; this->_learnSpell[i] && i < this->_size; i++)
+			tmp[i] = this->_learnSpell[i];
+	}
+	
+	tmp[this->_size - 1] = learn;
+
+	if (this->_learnSpell) {
+		for (int i = 0; this->_learnSpell[i]; i++)
+			delete this->_learnSpell[i];
+	
+	delete [] this->_learnSpell ;
+	}
+	this->_learnSpell = tmp;
 }
 
-void	Warlock::forgetSpell(const std::string forget) {
+void	Warlock::forgetSpell(const std::string &forget) {
 	int i = 0;
 
-	while (strcmp(this->_learnSpell[i]->getName().c_str(), forget.c_str()) != 0)
-		i++;
+	if (this->_learnSpell) {
+		while (strcmp(this->_learnSpell[i]->getName().c_str(), forget.c_str()) != 0 && i < this->_size)
+			i++;
+	}
+	if (i == this->_size)
+		return ;
 
+	this->_size--;
+	if (this->_size == 0) {
+		for (int j = 0; this->_learnSpell[j]; j++)
+			delete this->_learnSpell[j];
+		delete [] this->_learnSpell;
+		this->_learnSpell = NULL;
+		return ;
+	}
+
+	ASpell**	tmp = new ASpell*[this->_size];
+	int	j = 0;
+	int	k = 0;
+
+	while (this->_learnSpell[j]) {
+		if (j == i)
+			;
+		else {
+			tmp[k] = this->_learnSpell[j];
+			k++;
+		}
+		j++;
+	}
+	for (int j = 0; this->_learnSpell[j]; j++)
+		delete this->_learnSpell[j];
+	delete [] this->_learnSpell;
+	this->_learnSpell = tmp;
 }
 
-void	Warlock::launchSpell(std::string const spell, ATarget &tar) {
+void	Warlock::launchSpell(std::string const &spell, ATarget &tar) {
+	int i = 0;
 
+	if (this->_learnSpell) {
+		while (strcmp(this->_learnSpell[i]->getName().c_str(), spell.c_str()) != 0 && i < this->_size)
+			i++;
+	}
+	if (i == this->_size)
+		return ;
+	else
+		tar.getHitBySpell(*this->_learnSpell[i]);
 }

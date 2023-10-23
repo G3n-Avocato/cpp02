@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:45:54 by lamasson          #+#    #+#             */
-/*   Updated: 2023/10/20 18:19:34 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/10/23 16:10:13 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ class	Warlock {
 		void	introduce(void) const;
 
 		void	learnSpell(ASpell* learn);
-		void	forgetSpell(std::string const forget);
-		void	launchSpell(std::string const spell, ATarget& tar);
+		void	forgetSpell(std::string const &forget);
+		void	launchSpell(std::string const &spell, ATarget& tar);
 
 	private:
 
