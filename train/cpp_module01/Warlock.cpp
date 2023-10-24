@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:48:40 by lamasson          #+#    #+#             */
-/*   Updated: 2023/10/23 16:51:05 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/10/24 18:56:26 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	Warlock::forgetSpell(const std::string &forget) {
 
 	this->_size--;
 	if (this->_size == 0) {
-		for (int j = 0; this->_learnSpell[j]; j++)
+		for (int j = 0; j <= this->_size; j++)
 			delete this->_learnSpell[j];
 		delete [] this->_learnSpell;
 		this->_learnSpell = NULL;
