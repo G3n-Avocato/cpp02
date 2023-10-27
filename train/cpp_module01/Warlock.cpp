@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:48:40 by lamasson          #+#    #+#             */
-/*   Updated: 2023/10/24 18:56:26 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/10/27 16:00:29 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	Warlock::learnSpell(ASpell *learn) {
 	this->_learnSpell = tmp;
 }
 
-void	Warlock::forgetSpell(const std::string &forget) {
+void	Warlock::forgetSpell(const std::string forget) {
 	int i = 0;
 
 	if (this->_learnSpell) {
@@ -104,7 +104,7 @@ void	Warlock::forgetSpell(const std::string &forget) {
 	this->_learnSpell = tmp;
 }
 
-void	Warlock::launchSpell(std::string const &spell, ATarget &tar) {
+void	Warlock::launchSpell(const std::string spell, ATarget const &tar) {
 	int i = 0;
 
 	if (this->_learnSpell) {
