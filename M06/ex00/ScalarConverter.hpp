@@ -19,16 +19,23 @@ class	ScalarConverter {
 
 	public:
 		ScalarConverter(void);
-		ScalarConverter(const ScalarConverter &src);
-		ScalarConverter& operator=(const ScalarConverter &rhs);
 		~ScalarConverter(void);
 		
-		static void	convert(std::string const argv);
+		static void	convert(std::string const &argv);
+
 	private:
+		
+		ScalarConverter(const ScalarConverter &src);
+		ScalarConverter& operator=(const ScalarConverter &rhs);
+		
 		char	_c;
-		int		_i;
+		int	_i;
 		float	_f;
 		double	_d;
+
+		int	DetectType(std::string const &argv) const;
+		void	ConvertType(std::string const &argv, int type);
+		void	PrintType(void) const;
 };
 
 #endif
