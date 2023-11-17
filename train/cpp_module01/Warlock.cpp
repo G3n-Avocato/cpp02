@@ -23,10 +23,10 @@ Warlock::Warlock(std::string const &name, std::string const &title) : _name(name
 
 Warlock::~Warlock(void) {
 	if (this->_learnSpell) {
-		for (int i = 0; this->_learnSpell[i]; i++)
+		for (int i = 0; i < this->_size; i++)
 			delete this->_learnSpell[i];
+		delete [] this->_learnSpell;
 	}
-	delete [] this->_learnSpell;
 	std::cout << this->_name << ": My job here is done!" << std::endl;
 }
 
