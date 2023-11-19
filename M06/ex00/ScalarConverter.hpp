@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 21:23:49 by lamasson          #+#    #+#             */
-/*   Updated: 2023/11/18 21:43:50 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/11/19 21:51:16 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,13 @@ class	ScalarConverter {
 		ScalarConverter& operator=(const ScalarConverter &rhs);
 		~ScalarConverter(void);
 		
-		char	_c;
-		int		_i;
-		float	_f;
-		double	_d;
-/*
-		operator	double() { return static_cast<double>(this->_i); }
-		operator	int() {return static_cast<int>(this->_d); }
-		operator	char() {return static_cast<char>(this->_i); }
-*/
 		static int		DetectType(std::string const &);
-		
 		static void		ConvertType(std::string const &, int);
+
+		static void		ConvertToChar(long int);
+		static void		ConvertToInt(long int);
+		static void		ConvertToFloat(float Fnb);
+		static void		ConvertToDouble(double Dnb);
 };
 
 #endif
