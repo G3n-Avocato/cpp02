@@ -33,8 +33,8 @@ class	ScalarConverter {
 
 		static void		ConvertToChar(long int);
 		static void		ConvertToInt(long int);
-		static void		ConvertToFloat(float Fnb);
-		static void		ConvertToDouble(double Dnb);
+		static void		ConvertToFloat(float, int);
+		static void		ConvertToDouble(double);
 };
 
 #endif

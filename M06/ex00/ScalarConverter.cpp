@@ -54,7 +54,7 @@ void	ScalarConverter::ConvertType(std::string const &str, int T) {
 			ConvertToChar(Inb);
 			ConvertToInt(Inb);
 			Fnb = static_cast<float>(Inb);
-			ConvertToFloat(Fnb);
+			ConvertToFloat(Fnb, T);
 			Dnb = static_cast<double>(Fnb);
 			ConvertToDouble(Dnb);
 			break ;
@@ -64,7 +64,7 @@ void	ScalarConverter::ConvertType(std::string const &str, int T) {
 			ConvertToChar(Inb);
 			ConvertToInt(Inb);
 			Fnb = static_cast<float>(Inb);
-			ConvertToFloat(Fnb);
+			ConvertToFloat(Fnb, T);
 			Dnb = static_cast<double>(Fnb);
 			ConvertToDouble(Dnb);
 			break ;
@@ -74,7 +74,7 @@ void	ScalarConverter::ConvertType(std::string const &str, int T) {
 			Inb = static_cast<long int>(Fnb);
 			ConvertToChar(Inb);
 			ConvertToInt(Inb);
-			ConvertToFloat(Fnb);
+			ConvertToFloat(Fnb, T);
 			Dnb = static_cast<double>(Fnb);
 			ConvertToDouble(Dnb);
 			break ;
@@ -85,8 +85,7 @@ void	ScalarConverter::ConvertType(std::string const &str, int T) {
 			ConvertToChar(Inb);
 			ConvertToInt(Inb);
 			Fnb = static_cast<float>(Dnb);
-	//	printf("\nfloat = %f double %f\n", Fnb, Dnb);
-			ConvertToFloat(Fnb);
+			ConvertToFloat(Fnb, T);
 			ConvertToDouble(Dnb);
 			break ;
 		
@@ -109,19 +108,23 @@ void	ScalarConverter::ConvertToDouble(double Dnb) {
 		std::cout << "double: " << Dnb << std::endl;
 }
 
-void	ScalarConverter::ConvertToFloat(float Fnb) {
+void	ScalarConverter::ConvertToFloat(float Fnb, int T) {
+	(void)T;
 	if (Fnb < FLT_MIN || Fnb > FLT_MAX) {
-		if (Fnb < FLT_MIN)
+		if (Fnb == 0)	
+		std::cout << "float: " << std::fixed << std::setprecision(1) << Fnb << "f" << std::endl;
+		else if (Fnb < FLT_MIN)
 			std::cout << "float: " << Fnb << "f" << std::endl;
 		else if (Fnb > FLT_MAX)
 			std::cout << "float: +" << Fnb << "f" << std::endl;
 	}
+	else if (T == 1 || T == 2)
+		std::cout << "float: " << std::fixed << std::scientific << Fnb << "f" << std::endl;
 	else
-		std::cout << "float: " << std::fixed << std::setprecision(1) << Fnb << "f" << std::endl;
+		std::cout << "float: " << Fnb << "f" << std::endl;
 }
 
 void	ScalarConverter::ConvertToInt(long int Inb) {
-	
 	if (Inb < INT_MIN || Inb > INT_MAX)
 		std::cout << "int: Non displayable" << std::endl;
 	else
@@ -129,7 +132,6 @@ void	ScalarConverter::ConvertToInt(long int Inb) {
 }
 
 void	ScalarConverter::ConvertToChar(long int Inb) {
-	
 	if ( !(Inb > 0 && Inb < 127) || !isprint(Inb))
 		std::cout << "char: Non displayable" << std::endl;
 	else
