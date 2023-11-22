@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 21:23:49 by lamasson          #+#    #+#             */
-/*   Updated: 2023/11/19 21:51:16 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/11/21 21:55:11 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,11 @@ class	ScalarConverter {
 		static int		DetectType(std::string const &);
 		static void		ConvertType(std::string const &, int);
 
+		static bool		FloatIsInt(float);
 		static void		ConvertToChar(long int);
 		static void		ConvertToInt(long int);
-		static void		ConvertToFloat(float, int);
-		static void		ConvertToDouble(double);
+		static void		ConvertToFloat(float Fnb);
+		static void		ConvertToDouble(double Dnb);
 };
 
 #endif

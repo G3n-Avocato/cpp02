@@ -6,13 +6,14 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 22:10:44 by lamasson          #+#    #+#             */
-/*   Updated: 2023/11/19 21:43:43 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/11/21 22:03:33 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 #include <climits>
 #include <cfloat>
+//#include <cmath>
 
 #include <cstdlib>
 #include <iostream>
@@ -24,8 +25,6 @@ void	ScalarConverter::convert(const std::string &str) {
 	int	T = DetectType(str);
 	ConvertType(str, T);
 }
-
-//atention au neg en last ex: 6.98- ou 9.897f- : c nb sont validez sur ce code
 
 int	ScalarConverter::DetectType(const std::string &str) {
 	std::size_t	foundInt = str.find_first_not_of("0123456789-");
@@ -54,7 +53,7 @@ void	ScalarConverter::ConvertType(std::string const &str, int T) {
 			ConvertToChar(Inb);
 			ConvertToInt(Inb);
 			Fnb = static_cast<float>(Inb);
-			ConvertToFloat(Fnb, T);
+			ConvertToFloat(Fnb);
 			Dnb = static_cast<double>(Fnb);
 			ConvertToDouble(Dnb);
 			break ;
@@ -64,7 +63,7 @@ void	ScalarConverter::ConvertType(std::string const &str, int T) {
 			ConvertToChar(Inb);
 			ConvertToInt(Inb);
 			Fnb = static_cast<float>(Inb);
-			ConvertToFloat(Fnb, T);
+			ConvertToFloat(Fnb);
 			Dnb = static_cast<double>(Fnb);
 			ConvertToDouble(Dnb);
 			break ;
@@ -74,7 +73,7 @@ void	ScalarConverter::ConvertType(std::string const &str, int T) {
 			Inb = static_cast<long int>(Fnb);
 			ConvertToChar(Inb);
 			ConvertToInt(Inb);
-			ConvertToFloat(Fnb, T);
+			ConvertToFloat(Fnb);
 			Dnb = static_cast<double>(Fnb);
 			ConvertToDouble(Dnb);
 			break ;
@@ -85,7 +84,7 @@ void	ScalarConverter::ConvertType(std::string const &str, int T) {
 			ConvertToChar(Inb);
 			ConvertToInt(Inb);
 			Fnb = static_cast<float>(Dnb);
-			ConvertToFloat(Fnb, T);
+			ConvertToFloat(Fnb);
 			ConvertToDouble(Dnb);
 			break ;
 		
@@ -96,6 +95,13 @@ void	ScalarConverter::ConvertType(std::string const &str, int T) {
 			std::cout << "double: nan" << std::endl;
 	}
 }
+/*
+bool	ScalarConverter::FloatIsInt(float Fnb) {
+	if (Fnb == std::floor(Fnb))
+		return true ;
+	else
+		return false;
+}*/
 
 void	ScalarConverter::ConvertToDouble(double Dnb) {
 	if (Dnb < DBL_MIN || Dnb > DBL_MAX) {
@@ -108,18 +114,17 @@ void	ScalarConverter::ConvertToDouble(double Dnb) {
 		std::cout << "double: " << Dnb << std::endl;
 }
 
-void	ScalarConverter::ConvertToFloat(float Fnb, int T) {
-	(void)T;
+void	ScalarConverter::ConvertToFloat(float Fnb) {
 	if (Fnb < FLT_MIN || Fnb > FLT_MAX) {
-		if (Fnb == 0)	
-		std::cout << "float: " << std::fixed << std::setprecision(1) << Fnb << "f" << std::endl;
+		if (Fnb == 0)
+			std::cout << "float: " << std::fixed << std::setprecision(1) << Fnb << "f" << std::endl;
 		else if (Fnb < FLT_MIN)
 			std::cout << "float: " << Fnb << "f" << std::endl;
 		else if (Fnb > FLT_MAX)
 			std::cout << "float: +" << Fnb << "f" << std::endl;
 	}
-	else if (T == 1 || T == 2)
-		std::cout << "float: " << std::fixed << std::scientific << Fnb << "f" << std::endl;
+//	else if (FloatIsInt(Fnb))
+//		std::cout << "float: " << std::fixed << std::setprecision(1) << Fnb << "f" << std::endl;
 	else
 		std::cout << "float: " << Fnb << "f" << std::endl;
 }
