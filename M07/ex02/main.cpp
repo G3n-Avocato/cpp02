@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   iter.hpp                                           :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 21:27:18 by lamasson          #+#    #+#             */
-/*   Updated: 2023/11/23 17:49:51 by lamasson         ###   ########.fr       */
+/*   Created: 2023/11/23 18:00:28 by lamasson          #+#    #+#             */
+/*   Updated: 2023/11/24 02:36:51 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include"Array.hpp"
 
-#include <iostream>
-#include <iomanip>
+int main(void) {
 
-template<typename T>
-void	iter(T *arr, int length, void (*fonction)(T)) {
-	for(int i = 0; i < length; i++)
-		fonction(arr[i]);
-}
+	
 
-template<typename T>
-void	ft_print(T pos) {
-	std::cout << std::fixed << std::setprecision(1) << pos << " ";
+	return (0);
 }

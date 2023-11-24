@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 21:26:40 by lamasson          #+#    #+#             */
-/*   Updated: 2023/11/23 01:21:38 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/11/23 17:49:58 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,6 @@ int main(void) {
 	iter(tab, 11, ft_print);
 	std::cout << std::endl;
 	iter(ftab, 5, ft_print);
-	std::cout << std::endl;
-
-	iter(tab, 11, plusone);
-	iter(tab, 11, ft_print);
 	std::cout << std::endl;
 
 	return (0);
