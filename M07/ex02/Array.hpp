@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 18:02:41 by lamasson          #+#    #+#             */
-/*   Updated: 2023/11/24 00:07:39 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/11/24 19:26:59 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,8 @@ class	Array {
 		
 	private:
 
-		T				*_arr;
 		unsigned int	_size;
-
+		T				*_arr;
 };
 
 template<typename T>
