@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 20:05:53 by lamasson          #+#    #+#             */
-/*   Updated: 2023/11/28 20:38:19 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/11/28 21:24:46 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 Span::Span(void) {
 }
 
-Span::Span(unsigned int N) : _N(N) , _arr
+Span::Span(unsigned int N) : _N(N) , _arr(new )
 
 const char*	Span::FullArray::what() const throw() {
 	return ("std::exception: Add element impossible: Array already full\n");
