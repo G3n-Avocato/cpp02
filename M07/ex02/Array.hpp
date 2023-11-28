@@ -32,7 +32,7 @@ class	Array {
 
 		class PosOutOfRange : public std::exception { 
 				public: 
-					virtual const char* what() const throw(){ return ("std::exception: Index pos Out of Range\n"); }; 
+					virtual const char* what() const throw() { return ("std::exception: Index pos Out of Range\n"); }; 
 		};
 		
 	private:

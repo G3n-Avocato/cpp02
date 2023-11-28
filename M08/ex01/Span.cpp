@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   easyfind.hpp                                       :+:      :+:    :+:   */
+/*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/25 21:10:54 by lamasson          #+#    #+#             */
-/*   Updated: 2023/11/28 18:46:23 by lamasson         ###   ########.fr       */
+/*   Created: 2023/11/28 20:05:53 by lamasson          #+#    #+#             */
+/*   Updated: 2023/11/28 20:38:19 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
+#include "Span.hpp"
 
-#include <exception>
+Span::Span(void) {
+}
 
-class	NoOccurenceFind : public std::exception {
-	public:
-		virtual const char*	what() const throw() {
-			return("std::exception: No Occurence find!\n");
-		};
-};
+Span::Span(unsigned int N) : _N(N) , _arr
 
-template<typename T>
-typename T::iterator	easyfind(T arr, int i) {
-	typename T::iterator it = arr.begin();
-	while (it != arr.end()) {
-		if (*it == i)
-			return (it);
-		it++;
-	}
-	throw NoOccurenceFind();
+const char*	Span::FullArray::what() const throw() {
+	return ("std::exception: Add element impossible: Array already full\n");
+}
+
+const char*	Span::EmptyArray::what() const throw() {
+	return ("std::exception: Empty Array or.. almost\n");
 }
