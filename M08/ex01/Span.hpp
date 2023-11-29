@@ -6,13 +6,14 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 19:52:04 by lamasson          #+#    #+#             */
-/*   Updated: 2023/11/28 20:22:00 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/11/29 22:38:08 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once 
 
 #include <exception>
+#include <list>
 
 class	Span{
 
@@ -25,6 +26,7 @@ class	Span{
 		~Span();
 
 		void	addNumber(int);
+		void	fillSpan(void);
 		class	FullArray : public std::exception {
 			public:
 				virtual const char*	what() const throw();
@@ -40,6 +42,6 @@ class	Span{
 	private:
 		
 		unsigned int	_N;
-		int				*_arr;
+		std::list<int>	_arr;
 
 };
