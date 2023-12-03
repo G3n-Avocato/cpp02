@@ -13,6 +13,7 @@
 #include "MutantStack.hpp"
 #include <iostream>
 #include <list>
+#include <cstring>
 
 int	main(void) {
 	{
@@ -48,8 +49,13 @@ int	main(void) {
 		}
 		
 		std::stack<int>	s(mstack);
-		std::cout << "- test operateur cpy sur container stack -" << std::endl;
-			std::cout << std::endl;
+		std::cout << " :contructeur de cpy stack avec mstack: " << std::endl;
+		while (!s.empty())
+		{
+			std::cout << s.top() << std::endl;
+			s.pop();
+		}
+		std::cout << std::endl;
 	}
 	{
 		std::cout << "-- Test comparateur main 01 [container list] --\n" << std::endl;
@@ -137,20 +143,28 @@ int	main(void) {
 		std::cout << " :MutantStack copy + const_iterator: " << std::endl;
 		while (itc != itec)
 		{
-			std::cout << "Deb: " << *itc << " Fin: " << *itec << std::endl;
+			std::cout << *itc;
 			itc++;
 		}
 		std::cout << std::endl;
 	}
 	{
-		std::cout << "-- Test comparaison container list + const_iterator --" << std::endl;
+		std::cout << "-- Test comparaison container list + const_iterator --\n" << std::endl;
 
-		const std::list<char> list;
-		
-		std::list<char>::iterator	
+		const char*	tmp = "1La maison saucisse!\n";
+		const std::list<char> list(tmp, tmp + strlen(tmp));
+	
+		std::list<char>::const_iterator	it = list.begin();
+		std::list<char>::const_iterator	ite = list.end();
 
-
-
+		std::cout << "size: " << list.size() << std::endl;	
+		std::cout << " :std::list const test const_iterator: " << std::endl;
+		while (it != ite)
+		{
+			std::cout << *it;
+			it++;
+		}	
+		std::cout << std::endl;
 	}
 	return (0);
 }
