@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:07:19 by lamasson          #+#    #+#             */
-/*   Updated: 2023/12/06 22:19:05 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/07 21:04:26 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,8 @@ class	BitcoinExchange {
 		BitcoinExchange();
 
 		void	_checkInputFile(const std::string&);
-		void	_parsingInputFile(const std::string&);
-		
-		void	_fillInfile();
+		void	_parsingInputFile(std::string);
+		void	_fillInfile(std::string);
 
 		std::map<std::string const, int const>	_DataBase;
 		std::map<std::string, int>				_Infile;
