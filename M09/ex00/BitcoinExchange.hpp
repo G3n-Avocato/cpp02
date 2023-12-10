@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:07:19 by lamasson          #+#    #+#             */
-/*   Updated: 2023/12/08 23:32:46 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/10 02:42:12 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <string>
 #include <iostream>
 #include <map>
-
+#include <iterator>
 
 class	BitcoinExchange {
 	
@@ -27,7 +27,7 @@ class	BitcoinExchange {
 		BitcoinExchange&	operator=(const BitcoinExchange &rhs);
 		~BitcoinExchange();
 		
-		class	ErrorOpenFile : public std::exception { //test utilisation main si fct dans private ??
+		class	ErrorOpenFile : public std::exception {
 			public:
 				virtual const char*	what() const throw();
 		};
@@ -35,25 +35,29 @@ class	BitcoinExchange {
 	private:
 		
 		BitcoinExchange();
+		std::map<std::string,double>	_DataBase;
+	
+		std::string	_checkallfd(std::string) const;
+		void		_parsingDataBase(std::string);
+		void		_fillDataBase(std::string);
+		void		_parsingInputFile(std::string);
+		void		_parsinglineFile(std::string);
+		int			_parsingAllDateandValue(std::string, char) const;
+		int			_validYear(std::string) const;
 
-		void	_checkInputFile(char*);
-
-		void	_checkDataBase();
-		void	_parsingDataBase(std::string);
-		void	_fillDataBase(std::string);
-
-
-
-
-
-		void	_parsingInputFile(std::string);
-		void	_fillInfile(std::string);
-
-		std::map<std::string const, float>	_DataBase;
-		std::map<std::string, float>				_Infile;
+		void		_findDateinDB(std::string, double);
 
 		class	ErrorOpenDataBase : public std::exception {
 			public:
 				virtual const char*	what() const throw();
 		};
+		class	ErrorBadInputDataBase : public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
+		class	ErrorInvalidDateDB : public std::exception {
+			public:
+				virtual const char* what() const throw();
+		};
+
 };

@@ -59,7 +59,7 @@ void	ScalarConverter::ConvertType(std::string const &str, int T) {
 			break ;
 
 		case 2:
-			Inb = strtol(str.c_str(), NULL, 0);
+			Inb = strtol(str.c_str(), NULL, 0); //pb 0 10 
 			ConvertToChar(Inb);
 			ConvertToInt(Inb);
 			Fnb = static_cast<float>(Inb);
