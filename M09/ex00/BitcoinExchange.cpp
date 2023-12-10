@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 22:12:07 by lamasson          #+#    #+#             */
-/*   Updated: 2023/12/10 02:43:24 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/10 19:49:19 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,14 @@
 #include <cstdlib>
 
 BitcoinExchange::BitcoinExchange(char* arg) {
-
 	std::string	dataDB = this->_checkallfd("data.csv");
 	this->_parsingDataBase(dataDB);
 	std::string	dataIn = this->_checkallfd(arg);
 	this->_parsingInputFile(dataIn);
+/*
+	for (std::map<std::string,double>::iterator it = _DataBase.begin(); it != _DataBase.end(); it++)
+		std::cout << it->first << " " << it ->second << std::endl;
+*/
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& src) {
@@ -30,7 +33,7 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange& src) {
 
 BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange& rhs) {
 	if (this != &rhs)
-		this->_DataBase = rhs._DataBase;	
+		this->_DataBase = rhs._DataBase;
 	return (*this);
 }
 
@@ -93,7 +96,6 @@ void	BitcoinExchange::_fillDataBase(std::string data) {
 		throw ErrorBadInputDataBase();
 	this->_DataBase[dstr] = val;
 }
-
 
 void	BitcoinExchange::_parsingInputFile(std::string data) {
 	std::string		tmp;

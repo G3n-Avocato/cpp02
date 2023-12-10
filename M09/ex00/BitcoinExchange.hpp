@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:07:19 by lamasson          #+#    #+#             */
-/*   Updated: 2023/12/10 02:42:12 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/10 16:16:54 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class	BitcoinExchange {
 	public:
 	
 		BitcoinExchange(char*);
-		BitcoinExchange(const BitcoinExchange &src);
+		BitcoinExchange(const BitcoinExchange &);
 		BitcoinExchange&	operator=(const BitcoinExchange &rhs);
 		~BitcoinExchange();
 		
@@ -44,7 +44,6 @@ class	BitcoinExchange {
 		void		_parsinglineFile(std::string);
 		int			_parsingAllDateandValue(std::string, char) const;
 		int			_validYear(std::string) const;
-
 		void		_findDateinDB(std::string, double);
 
 		class	ErrorOpenDataBase : public std::exception {
