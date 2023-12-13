@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 20:05:04 by lamasson          #+#    #+#             */
-/*   Updated: 2023/12/12 02:37:51 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/13 00:13:57 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ class	PmergeMe {
 	private:
 
 		void	_parsingARG(int, char**);
+		void	_list_step_OneTwo_FJA(void);
+
 
 		std::list<int>	_LnoSort;
 
