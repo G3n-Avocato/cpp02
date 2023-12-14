@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 21:27:18 by lamasson          #+#    #+#             */
-/*   Updated: 2023/11/23 17:49:51 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/14 20:52:41 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 #include <iomanip>
 
 template<typename T>
-void	iter(T *arr, int length, void (*fonction)(T)) {
-	for(int i = 0; i < length; i++)
+void	iter(const T *arr, size_t size, void (&fonction)(const T&)) {
+	for(size_t i = 0; i < size; i++)
 		fonction(arr[i]);
 }
 
 template<typename T>
-void	ft_print(T pos) {
+void	ft_print(const T &pos) {
 	std::cout << std::fixed << std::setprecision(1) << pos << " ";
 }

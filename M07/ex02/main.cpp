@@ -6,13 +6,12 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 18:00:28 by lamasson          #+#    #+#             */
-/*   Updated: 2023/11/25 18:47:31 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/14 22:48:33 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"Array.hpp"
-#include "iostream"
-#include <exception>
+#include <iostream>
 
 int main(void) {
 	{
@@ -21,10 +20,10 @@ int main(void) {
 		Array<int>	i(5);
 		Array<char>	c(9);
 		std::string	tmp = "Saucisse\n";	
-//
+
 		int *a = new int();
 		(void)a;
-//
+
 		for (int j = 0; i.size() > static_cast<unsigned int>(j); j++)
 			i[j] = j;
 
@@ -114,23 +113,32 @@ int main(void) {
 		}
 	}
 	{
-		std::cout << "-- Test 05 constructeur de copy with data --\n" << std::endl;
+		std::cout << "\n-- Test 05 constructeur de copy with data --\n" << std::endl;
 		
 		Array<int>	a(5);
 
 		for (unsigned int i = 0; a.size() > i; i++)
 			a[i] = 6;
-		
+		std::cout << "array a = " << a[0] << std::endl;
 		Array<int>	b(6);
 		
 		for (unsigned int i = 0; b.size() > i; i++)
 			b[i] = 39;
-		
+		std::cout << "array b = " << b[0] << std::endl;
+		std::cout << "a = b" << std::endl;	
 		a = b;
-
 		for (unsigned int i = 0; a.size() > i; i++)
 			std::cout << a[i] << " ";
-
+		std::cout << std::endl;
+	}
+	{
+		std::cout << "\n-- Test 06 -- test subject int a new --\n" << std::endl;
+		
+		int	*a = new int();
+	
+		std::cout << "display *a = "<< *a << std::endl;
+		
+		delete a;
 	}
 	return (0);
 }

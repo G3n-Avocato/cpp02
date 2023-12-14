@@ -19,15 +19,15 @@ int	main(void) {
 	
 	ptr.nb = 42;
 
-	std::cout << "addr ptr: " << &ptr << std::endl;
-	std::cout << "data int ptr: " << ptr.nb << std::endl;
+	std::cout << "Data ptr: " << &ptr << std::endl;
+	std::cout << "Data int ptr: " << ptr.nb << std::endl;
 
 	uintptr_t addr = Serializer::serialize(&ptr);
-	std::cout << "addr ptr serializer: " << addr << std::endl;
+	std::cout << "addr serializer Data: contenue: " << addr << " addr ptr: " << &addr << std::endl;
 
-	std::cout << "addr nptr: " << nptr << std::endl;
+	std::cout << "Data nptr: " << nptr << std::endl;
 	nptr = Serializer::deserialize(addr);
-	std::cout << "addr ptr deserializer: " << nptr << std::endl;
-	std::cout << "data int nptr: " << nptr->nb << std::endl;
+	std::cout << "Data nptr deserializer: " << nptr << std::endl;
+	std::cout << "Data int nptr: " << nptr->nb << std::endl;
 	return (0);
 }

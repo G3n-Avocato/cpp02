@@ -6,18 +6,15 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/16 22:10:44 by lamasson          #+#    #+#             */
-/*   Updated: 2023/11/21 22:03:33 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/13 19:28:24 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 #include <climits>
 #include <cfloat>
-//#include <cmath>
-
 #include <cstdlib>
 #include <iostream>
-#include <stdio.h>
 #include <iomanip>
 
 void	ScalarConverter::convert(const std::string &str) {
@@ -59,7 +56,7 @@ void	ScalarConverter::ConvertType(std::string const &str, int T) {
 			break ;
 
 		case 2:
-			Inb = strtol(str.c_str(), NULL, 0); //pb 0 10 
+			Inb = strtol(str.c_str(), NULL, 10); 
 			ConvertToChar(Inb);
 			ConvertToInt(Inb);
 			Fnb = static_cast<float>(Inb);
@@ -95,13 +92,6 @@ void	ScalarConverter::ConvertType(std::string const &str, int T) {
 			std::cout << "double: nan" << std::endl;
 	}
 }
-/*
-bool	ScalarConverter::FloatIsInt(float Fnb) {
-	if (Fnb == std::floor(Fnb))
-		return true ;
-	else
-		return false;
-}*/
 
 void	ScalarConverter::ConvertToDouble(double Dnb) {
 	if (Dnb < DBL_MIN || Dnb > DBL_MAX) {
@@ -123,8 +113,6 @@ void	ScalarConverter::ConvertToFloat(float Fnb) {
 		else if (Fnb > FLT_MAX)
 			std::cout << "float: +" << Fnb << "f" << std::endl;
 	}
-//	else if (FloatIsInt(Fnb))
-//		std::cout << "float: " << std::fixed << std::setprecision(1) << Fnb << "f" << std::endl;
 	else
 		std::cout << "float: " << Fnb << "f" << std::endl;
 }

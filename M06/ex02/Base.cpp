@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 00:30:18 by lamasson          #+#    #+#             */
-/*   Updated: 2023/11/22 02:58:08 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/14 00:04:06 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "A.hpp"
 #include "B.hpp"
 #include "C.hpp"
-#include "D.hpp"
 #include <cstdlib>
 
 Base::~Base(void) {
@@ -23,7 +22,7 @@ Base::~Base(void) {
 Base*	Base::generate(void) {
 	Base*	al = NULL;
 	srand(time(NULL));
-	int		nb = rand() %4 + 1;
+	int		nb = rand() %3 + 1;
 	switch (nb) {
 		case 1: {
 			al = new A();
@@ -38,11 +37,6 @@ Base*	Base::generate(void) {
 		case 3: {
 			al = new C();
 			std::cout << "Base class generate: C" << std::endl;
-			break ;
-		}
-		default: {
-			al = new D();
-			std::cout << "Base class generate: Default" << std::endl;
 			break ;
 		}
 	}
@@ -65,8 +59,6 @@ void	Base::identify(Base* p) {
 		std::cout << "Base class PTR: C" << std::endl;
 		return ;
 	}
-	else
-		std::cout << "No Conversion find for Base PTR" << std::endl;
 }
 
 void	Base::identify(Base& p) {
@@ -75,19 +67,19 @@ void	Base::identify(Base& p) {
 		(void)aa;
 		std::cout << "Base class REF: A" << std::endl;
 	}
-	catch (std::exception e) {
+	catch (std::exception &e) {
 		try {
 			B&	bb = dynamic_cast<B&>(p);
 			(void)bb;
 			std::cout << "Base class REF: B" << std::endl;
 		}
-		catch (std::exception e) {
+		catch (std::exception &e) {
 			try {
 				C&	cc = dynamic_cast<C&>(p);
 				(void)cc;
 				std::cout << "Base class REF: C" << std::endl;
 			}
-			catch (std::exception e) {
+			catch (std::exception &e) {
 				std::cout << "No Conversion find for Base REF" << std::endl;
 			}
 		}
