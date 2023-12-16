@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 21:08:53 by lamasson          #+#    #+#             */
-/*   Updated: 2023/11/28 19:47:10 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/16 00:41:32 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,24 @@ int main(void) {
 			std::cout << e.what();
 		}
 		std::cout << std::endl;
+	}
+	{
+		std::cout << "-- vector const test 01 --\n" << std::endl;
+
+		const int	tab[] = {2147483647, 2, 213};
+		const std::vector<int>	vect_c(tab, tab + sizeof(tab) / sizeof(int));
+
+		std::cout << "vector const: ";
+		for (std::vector<int>::const_iterator it = vect_c.begin(); it != vect_c.end(); it++)
+			std::cout << *it << " ";
+		std::cout << std::endl;
+
+		try {
+			std::cout << "search: 213\nfind: " << *easyfind(vect_c, 213) << std::endl;
+		}
+		catch (std::exception& e) {
+			std::cout << e.what();
+		}
 	}
 	return (0);
 }

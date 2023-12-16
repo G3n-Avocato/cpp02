@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 21:10:54 by lamasson          #+#    #+#             */
-/*   Updated: 2023/11/28 18:46:23 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/16 00:40:48 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 class	NoOccurenceFind : public std::exception {
 	public:
 		virtual const char*	what() const throw() {
-			return("std::exception: No Occurence find!\n");
+			return("std::exception: No occurence find!\n");
 		};
 };
 

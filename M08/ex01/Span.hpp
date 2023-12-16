@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 19:52:04 by lamasson          #+#    #+#             */
-/*   Updated: 2023/11/29 22:38:08 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/16 02:29:44 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 #include <exception>
 #include <list>
+#include <iostream>
+#include <time.h>
+#include <cstdlib>
 
 class	Span{
 

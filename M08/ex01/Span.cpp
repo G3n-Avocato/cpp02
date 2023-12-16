@@ -6,13 +6,11 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 20:05:53 by lamasson          #+#    #+#             */
-/*   Updated: 2023/11/29 22:56:44 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/16 02:30:22 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Span.hpp"
-#include <cstdlib>
-#include <time.h>
 #include <climits>
 
 Span::Span(void) : _N(0) {
@@ -37,23 +35,32 @@ Span::~Span(void) {
 }
 
 void	Span::addNumber(int nb) {
-	if (static_cast<unsigned int>(this->_arr.size()) < this->_N)
-		this->_arr.push_back(nb);
-	else
-		throw FullArray();
+	try {
+		if (static_cast<unsigned int>(this->_arr.size()) < this->_N)
+			this->_arr.push_back(nb);
+		else
+			throw FullArray();
+	}
+	catch (std::exception& e) {
+		std::cout << e.what();
+	}
 }
 
 void	Span::fillSpan(void) {
-	if (static_cast<unsigned int>(this->_arr.size()) < this->_N) {
-		int nb;
-		srand(time(NULL));
-		for (std::list<int>::iterator it = this->_arr.begin(); static_cast<unsigned int>(this->_arr.size()) < this->_N; it++) {
-			nb = rand() % INT_MAX;
-			this->_arr.insert(it, nb);
+	try {
+		if (static_cast<unsigned int>(this->_arr.size()) < this->_N) {
+			int nb;
+			for (std::list<int>::iterator it = this->_arr.begin(); static_cast<unsigned int>(this->_arr.size()) < this->_N; it++) {
+				nb = rand() % INT_MAX;
+				this->_arr.insert(it, nb);
+			}
 		}
+		else
+			throw FullArray();
 	}
-	else
-		throw FullArray();
+	catch (std::exception& e) {
+		std::cout << e.what();
+	}
 }
 
 int		Span::shortestSpan(void) {
