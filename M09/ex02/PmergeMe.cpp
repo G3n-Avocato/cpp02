@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 01:13:33 by lamasson          #+#    #+#             */
-/*   Updated: 2023/12/17 00:09:39 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/17 23:04:06 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,56 +97,58 @@ void	PmergeMe::_list_step_OneTwo_FJA(void) {
 		pair.push_back(std::make_pair(-1, *it));
 		this->_LSort.pop_front();
 	}
-	this->_list_step_Three_FJA(pair);
+	this->_list_step_Three_FJA(&pair);
 
 ///////////////
 	for (std::list<std::pair<int,int> >::iterator	it = pair.begin(); it != pair.end(); it++) {
 		std::cout << "pair = " << it->first << " = "<< it->second << std::endl;
 	}
-
+//////////////
 }
 
-void	PmergeMe::_triInsertion(std::list<std::pair<int,int> > pair, size_t size) {
+void	PmergeMe::_triInsertion(std::list<std::pair<int,int> > *pair, size_t size) {
 	if (size < 1)
 			return ;
-	std::list<std::pair<int,int> >::iterator	it = pair.begin();
-	std::list<std::pair<int,int> >::iterator itt = pair.begin();
+	std::list<std::pair<int,int> >::iterator	it = pair->begin();
+	std::list<std::pair<int,int> >::iterator itt = pair->begin();
 	std::advance(it, size - 1);
 	std::advance(itt, size - 2);
-	do {
-		if (it->second < itt->second) {
-			while (itt->second > it->second && itt != pair.begin())
+	
+	while (itt != pair->begin()) {
+		if (it->second < itt->second) {	
+			while (itt->second > it->second && itt != pair->begin())
 				itt--;
-			pair.insert(itt, std::make_pair(it->first, it->second));
-			pair.erase(it);
-			it = pair.begin();
-			std::cerr << "1 = " << pair.size() - 1 << " 2 = " << pair.size() - 2 << std::endl;
-			std::advance(it, pair.size() - 1);
-			std::advance(itt, pair.size() - 2);
+			pair->insert(itt, 1, std::make_pair(it->first, it->second));
+			pair->erase(it);
+			it = pair->begin();
+			itt = pair->begin();
+			std::advance(it, size - 1);
+			std::advance(itt, size - 2);
 		}
+		else {
 			it--;
 			itt--;
+		}
 	}
-	while (itt != pair.begin());
 
-	for (std::list<std::pair<int,int> >::iterator	it = pair.begin(); it != pair.end(); it++) {
+///////
+	for (std::list<std::pair<int,int> >::iterator	it = pair->begin(); it != pair->end(); it++) {
 		std::cout << "pair = " << it->first << " = "<< it->second << std::endl;
 	}
 	std::cout << std::endl;
-}
-
-
-
-void	PmergeMe::_list_step_Three_FJA(std::list<std::pair<int,int> > pair) {
-	size_t	size = pair.size();
-	this->_triInsertion(pair, size);
-
+////////
 }
 
 
 
 
-
+void	PmergeMe::_list_step_Three_FJA(std::list<std::pair<int,int> > *pair) {
+	size_t	size = pair->size();
+	if (size > 1) {
+		
+		this->_triInsertion(pair, size);
+	}
+}
 
 
 const char*	PmergeMe::Error::what() const throw() {
