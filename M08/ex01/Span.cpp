@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 20:05:53 by lamasson          #+#    #+#             */
-/*   Updated: 2023/12/16 02:30:22 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/19 01:14:29 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	Span::fillSpan(void) {
 	try {
 		if (static_cast<unsigned int>(this->_arr.size()) < this->_N) {
 			int nb;
-			for (std::list<int>::iterator it = this->_arr.begin(); static_cast<unsigned int>(this->_arr.size()) < this->_N; it++) {
+			while (static_cast<unsigned int>(this->_arr.size()) < this->_N) {
 				nb = rand() % INT_MAX;
-				this->_arr.insert(it, nb);
+				this->_arr.insert(this->_arr.begin(), nb);
 			}
 		}
 		else
@@ -65,9 +65,9 @@ void	Span::fillSpan(void) {
 
 int		Span::shortestSpan(void) {
 	if (static_cast<int>(this->_arr.size()) > 1) {
-		this->_arr.sort();
-		std::list<int>::iterator	itb = this->_arr.begin();
-		std::list<int>::iterator	itb1 = this->_arr.begin();
+		std::sort(this->_arr.begin(), this->_arr.end());
+		std::deque<int>::iterator	itb = this->_arr.begin();
+		std::deque<int>::iterator	itb1 = this->_arr.begin();
 		itb1++;
 		int	dist = *itb1 - *itb;
 		while (itb1 != this->_arr.end()) {
@@ -84,7 +84,7 @@ int		Span::shortestSpan(void) {
 
 int		Span::longestSpan(void) {
 	if (static_cast<int>(this->_arr.size()) > 1) {
-		this->_arr.sort();
+		std::sort(this->_arr.begin(), this->_arr.end());
 		int	start = this->_arr.front();
 		int	end	= this->_arr.back();
 		int	dist = end - start;
