@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 20:05:04 by lamasson          #+#    #+#             */
-/*   Updated: 2023/12/18 21:14:26 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/20 00:15:45 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ class	PmergeMe {
 
 		void	_parsingARG(int, char**);
 		void	_list_step_OneTwo_FJA(void);
+		void	_list_step_Three_FJA(std::list<std::pair<int,int> >*);
+		
+		void	_triInsertIt(std::list<std::pair<int,int> >*, std::list<std::pair<int,int> >::iterator, size_t);
+		void	test_triInsertRec(std::list<std::pair<int,int> >*, std::list<std::pair<int,int> >::iterator);
 
-	//	void	_list_step_Three_FJA(std::list<std::pair<int,int> >*);
-	//	void	_triInsertion(std::list<std::pair<int,int> >*, size_t);
-
-		void	test_InsertionTab(std::list<std::pair<int,int> >* pair, size_t size);
-		void	test_triInsertion_Rec(std::list<std::pair<int, int> >* pair, size_t size);
+		void	_list_step_Four_FJA(std::list<std::pair<int, int> >*, std::list<std::pair<int,int> >::iterator);
 
 		std::list<int>	_LnoSort;
 

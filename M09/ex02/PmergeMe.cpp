@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 01:13:33 by lamasson          #+#    #+#             */
-/*   Updated: 2023/12/18 23:32:24 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/20 00:16:25 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,7 @@
 PmergeMe::PmergeMe(int argc, char** argv) {
 	this->_parsingARG(argc, argv);
 	this->_list_step_OneTwo_FJA();
-/*
-	size_t i = 0;
-	std::list<int>::iterator it = this->_LnoSort.begin();
 
-	while (i < this->_DSort.size()) {
-		std::cout << "deque : " << this->_DSort[i] << std::endl;
-		std::cout << "list : " << *it << std::endl;
-		i++;
-		it++;
-	}
-*/
 }
 
 PmergeMe::PmergeMe(const PmergeMe& src) {
@@ -98,38 +88,47 @@ void	PmergeMe::_list_step_OneTwo_FJA(void) {
 		pair.push_back(std::make_pair(-1, *it));
 		this->_LSort.pop_front();
 	}
-//	this->_list_step_Three_FJA(&pair);
-	size_t size = pair.size();
-	std::list<std::pair<int,int> >::iterator itn = pair.begin();
-	std::advance(it, size - 1);
-	this->test_triInsertion_Rec(&pair, itn, size);
 
+	this->_list_step_Three_FJA(&pair);
 
 ///////////////
 	for (std::list<std::pair<int,int> >::iterator	it = pair.begin(); it != pair.end(); it++) {
 		std::cout << "pair = " << it->first << " = "<< it->second << std::endl;
 	}
-//////////////
+///////////////
 }
-/*
-void	PmergeMe::_triInsertion(std::list<std::pair<int,int> > *pair, size_t size) {
+
+void	PmergeMe::_list_step_Three_FJA(std::list<std::pair<int,int> > *pair) {
+	size_t	size = pair->size() - 1;
 	if (size < 1)
-			return ;
-	std::list<std::pair<int,int> >::iterator	it = pair->begin();
-	std::list<std::pair<int,int> >::iterator itt = pair->begin();
+		return ;
+	std::list<std::pair<int, int> >::iterator it = pair->begin();
 	std::advance(it, size);
+	this->_triInsertIt(pair, it, size);
+//	this->test_triInsertRec(pair, it);
+
+	this->_list_step_Four_FJA(pair, it);
+
+}
+
+/*
+ * fct Insertion sort ::_triInsertionIt in iteratif take less shot than fct in recursif ::test_triInsertionRec
+ */
+
+void	PmergeMe::_triInsertIt(std::list<std::pair<int,int> > *pair, std::list<std::pair<int, int> >::iterator it, size_t size) {
+	std::list<std::pair<int,int> >::iterator itt = pair->begin();
 	std::advance(itt, size - 1);
 	
 	while (itt != pair->begin()) {
-		if (it->second < itt->second) {	
+		if (it->second < itt->second) {
 			while (itt->second > it->second && itt != pair->begin())
 				itt--;
 			pair->insert(itt, 1, std::make_pair(it->first, it->second));
 			pair->erase(it);
 			it = pair->begin();
 			itt = pair->begin();
-			std::advance(it, size - 1);
-			std::advance(itt, size - 2);
+			std::advance(it, size);
+			std::advance(itt, size - 1);
 		}
 		else {
 			it--;
@@ -138,37 +137,40 @@ void	PmergeMe::_triInsertion(std::list<std::pair<int,int> > *pair, size_t size) 
 	}
 }
 
-void	PmergeMe::_list_step_Three_FJA(std::list<std::pair<int,int> > *pair) {
-	size_t	size = pair->size() - 1;
-	if (size < 1)
-		return ;
-	this->_triInsertion(pair, size);
-}*/
-
-void	PmergeMe::test_InsertionTab(std::list<std::pair<int,int> >* pair, std::list<std::pair<int, int> >::iterator it, size_t size) {
-	
-	std::list<std::pair<int,int> >::iterator	it = pair->begin();
-	std::list<std::pair<int,int> >::iterator itt = pair->begin();
-	std::advance(it, size - 1);
-	std::advance(itt, size - 2);
-	
+/*
+ * fct Recursive Insertion Sort
+ *
+void	PmergeMe::test_triInsertRec(std::list<std::pair<int,int> >* pair, std::list<std::pair<int, int> >::iterator it) {
+	std::list<std::pair<int,int> >::iterator itt = it;
+	itt--;
+	std::list<std::pair<int, int> >::iterator pos = it;
+	pos--;
 	if (it->second < itt->second) {	
 		while (itt->second > it->second && itt != pair->begin())
 			itt--;
 		pair->insert(itt, 1, std::make_pair(it->first, it->second));
 		pair->erase(it);
 	}
+	if (pos-- != pair->begin())
+		this->test_triInsertRec(pair, pos);
 }
+*
+*/
 
-
-void	PmergeMe::test_triInsertion_Rec(std::list<std::pair<int, int> >* pair, std::list<std::pair<int, int> >::iterator it, size_t size) {
-
-	if (size > 1) {
-		this->test_InsertionTab(pair, size - 1);
-		this->test_triInsertion_Rec(pair, size - 1);
+void	PmergeMe::_list_step_Four_FJA(std::list<std::pair<int, int> >* pair, std::list<std::pair<int,int> >::iterator it) {
+	std::list<std::pair<char,int> >	list_a;
+	std::list<std::pair<char,int> > list_b;
+	int	i = 0;
+	while (it != pair->begin()) {
+		list_a.push_front(std::make_pair(i, it->second));
+		list_b.push_front(std::make_pair(i, it->first));
+		it++;
+		i++;
 	}
-}
+	
+	//algo dichotomie
 
+}
 
 const char*	PmergeMe::Error::what() const throw() {
 	return ("Error\n");
