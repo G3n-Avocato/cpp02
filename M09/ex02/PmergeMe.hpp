@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 20:05:04 by lamasson          #+#    #+#             */
-/*   Updated: 2023/12/20 00:15:45 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/20 21:10:23 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,12 @@ class	PmergeMe {
 	private:
 
 		void	_parsingARG(int, char**);
+		
 		void	_list_step_OneTwo_FJA(void);
 		void	_list_step_Three_FJA(std::list<std::pair<int,int> >*);
-		
 		void	_triInsertIt(std::list<std::pair<int,int> >*, std::list<std::pair<int,int> >::iterator, size_t);
-		void	test_triInsertRec(std::list<std::pair<int,int> >*, std::list<std::pair<int,int> >::iterator);
-
-		void	_list_step_Four_FJA(std::list<std::pair<int, int> >*, std::list<std::pair<int,int> >::iterator);
+//		void	test_triInsertRec(std::list<std::pair<int,int> >*, std::list<std::pair<int,int> >::iterator);
+		void	_list_step_Four_FJA(std::list<std::pair<int, int> >* list_a, std::list<std::pair<int, int> >* list_b);
 
 		std::list<int>	_LnoSort;
 

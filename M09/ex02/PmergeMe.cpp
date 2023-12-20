@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 01:13:33 by lamasson          #+#    #+#             */
-/*   Updated: 2023/12/20 00:16:25 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/20 22:17:43 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 PmergeMe::PmergeMe(int argc, char** argv) {
 	this->_parsingARG(argc, argv);
 	this->_list_step_OneTwo_FJA();
+
+
+	for (std::list<int>::iterator it = _LSort.begin(); it != _LSort.end(); it++)
+		std::cout << "_LSort = " << *it << std::endl;
 
 }
 
@@ -91,11 +95,17 @@ void	PmergeMe::_list_step_OneTwo_FJA(void) {
 
 	this->_list_step_Three_FJA(&pair);
 
-///////////////
-	for (std::list<std::pair<int,int> >::iterator	it = pair.begin(); it != pair.end(); it++) {
+
+
+
+
+//////////////////////////////////
+/* testeur de pair trier en duo */
+//////////////////////////////////
+/*	for (std::list<std::pair<int,int> >::iterator	it = pair.begin(); it != pair.end(); it++) {
 		std::cout << "pair = " << it->first << " = "<< it->second << std::endl;
 	}
-///////////////
+/////////////////////////////////*/
 }
 
 void	PmergeMe::_list_step_Three_FJA(std::list<std::pair<int,int> > *pair) {
@@ -107,8 +117,30 @@ void	PmergeMe::_list_step_Three_FJA(std::list<std::pair<int,int> > *pair) {
 	this->_triInsertIt(pair, it, size);
 //	this->test_triInsertRec(pair, it);
 
-	this->_list_step_Four_FJA(pair, it);
+	std::list<std::pair<int,int> >	list_a;
+	std::list<std::pair<int,int> > list_b;
+	it = pair->begin();
+	int	i = pair->size();
+	std::advance(it, i);
+	while (it-- != pair->begin()) {
+		list_a.push_front(std::make_pair(i, it->second));
+		list_b.push_front(std::make_pair(i, it->first));
+		i--;
+	}
+	
+	this->_list_step_Four_FJA(&list_a, &list_b);
 
+////////////////////////////////////////
+/* testeur de chaine list a et list b */
+////////////////////////////////////////
+/*	for (std::list<std::pair<int,int> >::iterator	it = list_a.begin(); it != list_a.end(); it++) {
+		std::cout << "list_A = " << it->first << " = "<< it->second << std::endl;
+	
+	}
+	for (std::list<std::pair<int, int> >::iterator it = list_b.begin(); it != list_b.end(); it++) {
+		std::cout << "list_B = " << it->first << " = "<< it->second << std::endl;
+	}
+*////////////////////////////////////////
 }
 
 /*
@@ -123,7 +155,7 @@ void	PmergeMe::_triInsertIt(std::list<std::pair<int,int> > *pair, std::list<std:
 		if (it->second < itt->second) {
 			while (itt->second > it->second && itt != pair->begin())
 				itt--;
-			pair->insert(itt, 1, std::make_pair(it->first, it->second));
+			pair->insert(itt, std::make_pair(it->first, it->second));
 			pair->erase(it);
 			it = pair->begin();
 			itt = pair->begin();
@@ -157,19 +189,36 @@ void	PmergeMe::test_triInsertRec(std::list<std::pair<int,int> >* pair, std::list
 *
 */
 
-void	PmergeMe::_list_step_Four_FJA(std::list<std::pair<int, int> >* pair, std::list<std::pair<int,int> >::iterator it) {
-	std::list<std::pair<char,int> >	list_a;
-	std::list<std::pair<char,int> > list_b;
-	int	i = 0;
-	while (it != pair->begin()) {
-		list_a.push_front(std::make_pair(i, it->second));
-		list_b.push_front(std::make_pair(i, it->first));
-		it++;
-		i++;
-	}
-	
-	//algo dichotomie
+void	PmergeMe::_list_step_Four_FJA(std::list<std::pair<int, int> >* list_a, std::list<std::pair<int, int> >* list_b) {
+	std::list<std::pair<int, int> >::iterator	itb = list_b->begin();
+	if (itb->second >= 0)
+		list_a->push_front(std::make_pair(itb->first, itb->second));
+	list_b->erase(itb);
+		
+	do {
+		itb = list_b->begin();
+		std::list<std::pair<int, int> >::iterator	ita = list_a->begin();
+		std::list<std::pair<int, int> >::iterator	ita_b = list_a->begin();
+		while (itb->first != ita_b->first)
+			ita_b++;
+		ita = ita_b;
+		ita--;
+		while (itb->second < ita->second && ita != list_a->begin())
+			ita--;
+		if (ita == list_a->begin())
+			list_a->push_front(std::make_pair(itb->first, itb->second));
+		else {
+			ita++;
+			list_a->insert(ita, std::make_pair(itb->first, itb->second));
+		}
+		list_b->erase(itb);
+	} while (!list_b->empty());  
 
+	for (std::list<std::pair<int, int> >::iterator	ita = list_a->begin(); ita != list_a->end(); ita++)
+		this->_LSort.push_back(ita->second);
+//itb = nb a mettre ds a 
+//ita = pos ita->second compare avec itb->second
+//ita_b = ita->first == itb->first // check avant cette pos
 }
 
 const char*	PmergeMe::Error::what() const throw() {
