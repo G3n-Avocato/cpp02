@@ -6,14 +6,13 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 20:03:42 by lamasson          #+#    #+#             */
-/*   Updated: 2023/12/12 01:50:02 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/21 17:27:45 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
 int main(int argc, char **argv) {
-
 	try {
 		if (argc < 2)
 			throw PmergeMe::Error();
