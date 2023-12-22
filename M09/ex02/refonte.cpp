@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 19:15:44 by lamasson          #+#    #+#             */
-/*   Updated: 2023/12/22 00:43:41 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/22 18:54:30 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ PmergeMe::PmergeMe(int argc, char** argv) {
 
 	for (std::list<int>::iterator it = this->_LSort.begin(); it != this->_LSort.end(); it++)
 		std::cout << "_Lsort = " << *it << std::endl;
-	for (std::list<std::pair<int,int> >::iterator it = list_b.begin(); it != list_b.end(); it++)
-		std::cout << " list b = " << it->first << " : " << it->second << std::endl;
 
 
 }	
@@ -53,17 +51,6 @@ void	PmergeMe::_parsingARG(int argc, char** argv) {
 	}
 }
 
-void	PmergeMe::_list_sort_Max(std::list<int>::iterator it) {
-	std::list<int>::iterator	itt = this->_LSort.begin();
-	
-	if (!this->_LSort.empty()) {
-		while (*it > *itt && itt != this->_LSort.end())
-			itt++;
-	}
-	this->_LSort.insert(itt, *it);
-}
-
-
 void	PmergeMe::_list_step_FJA(size_t sizep, std::list<std::pair<int, int> >* list_b) {
 	
 	std::list<int>::iterator	it = this->_LnoSort.begin();
@@ -78,9 +65,19 @@ void	PmergeMe::_list_step_FJA(size_t sizep, std::list<std::pair<int, int> >* lis
 	if (sizep > 1)
 		this->_list_step_FJA(sizep - 2, list_b);
 	if (sizep == 1) {
-		std::cout << "ok" << std::endl;
 		this->_list_sort_Max(it);
+		return ;
 	}
+}
+
+void	PmergeMe::_list_sort_Max(std::list<int>::iterator it) {
+	std::list<int>::iterator	itt = this->_LSort.begin();
+	
+	if (!this->_LSort.empty()) {
+		while (*it > *itt && itt != this->_LSort.end())
+			itt++;
+	}
+	this->_LSort.insert(itt, *it);
 }
 
 void	PmergeMe::_list_sort_Min(std::list<std::pair<int, int> >* list_b) {
@@ -97,25 +94,20 @@ void	PmergeMe::_list_sort_Min(std::list<std::pair<int, int> >* list_b) {
 
 }
 
-std::list<int>::iterator	PmergeMe::_list_binary_search(std::list<std::pair<int,int> >::iterator val, std::list<int>::iterator& ref) {
+std::list<int>::iterator	PmergeMe::_list_binary_search(std::list<std::pair<int,int> >::iterator val, std::list<int>::iterator end) {
 	
-//	std::list<int>::iterator	start = this->_LSort.begin();
-//	std::list<int>::iterator	end = this->_LSort.end();
-	
-	std::list<int>::iterator	it = ref;
-	while (it != this->_LSort.begin()) {
-		if (val->first < *it) {
-			if (std::distance(this->_LSort.begin(), it) > 2)
-				std::advance(it, -2);
-			else
-				it--;
+	std::list<int>::iterator 	start = this->_LSort.begin();
+	while (start != end) {
+		std::list<int>::iterator	mid = start; 
+		std::advance(mid, std::distance(start, end) / 2);
+		if (val->first > *mid) {
+			mid++;
+			start = mid;
 		}
-		else if (val->first >= *it) {
-			it++;
-			return (it);
-		}
+		else
+			end = mid;
 	}
-	return (it);
+	return (start);
 }
 
 const char*	PmergeMe::Error::what() const throw() {

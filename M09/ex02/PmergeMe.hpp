@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 20:05:04 by lamasson          #+#    #+#             */
-/*   Updated: 2023/12/22 00:26:51 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/22 17:25:26 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ class	PmergeMe {
 		void						_list_step_FJA(size_t sizep, std::list<std::pair<int, int> >*);
 		void						_list_sort_Max(std::list<int>::iterator);
 		void						_list_sort_Min(std::list<std::pair<int, int> >*);
-		std::list<int>::iterator	_list_binary_search(std::list<std::pair<int, int> >::iterator val, std::list<int>::iterator& ref);
+		std::list<int>::iterator	_list_binary_search(std::list<std::pair<int, int> >::iterator val, std::list<int>::iterator end);
 
 		std::list<int>	_LnoSort;
 
