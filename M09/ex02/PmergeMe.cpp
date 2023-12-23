@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 01:13:33 by lamasson          #+#    #+#             */
-/*   Updated: 2023/12/22 22:24:20 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/23 17:35:51 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ PmergeMe::~PmergeMe(void) {
 }
 
 void	PmergeMe::_parsingARG(int argc, char** argv) {
-	this->_beginL = time(NULL);
-	this->_beginD = time(NULL);
 	long int	val = 0;
 
 	for (int i = 1; i != argc; i++) {

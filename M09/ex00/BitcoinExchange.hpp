@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:07:19 by lamasson          #+#    #+#             */
-/*   Updated: 2023/12/10 16:16:54 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/23 15:05:25 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ class	BitcoinExchange {
 	public:
 	
 		BitcoinExchange(char*);
-		BitcoinExchange(const BitcoinExchange &);
-		BitcoinExchange&	operator=(const BitcoinExchange &rhs);
 		~BitcoinExchange();
 		
 		class	ErrorOpenFile : public std::exception {
@@ -35,6 +33,9 @@ class	BitcoinExchange {
 	private:
 		
 		BitcoinExchange();
+		BitcoinExchange(const BitcoinExchange &);
+		BitcoinExchange& operator=(const BitcoinExchange &);
+		
 		std::map<std::string,double>	_DataBase;
 	
 		std::string	_checkallfd(std::string) const;

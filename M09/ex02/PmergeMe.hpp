@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 20:05:04 by lamasson          #+#    #+#             */
-/*   Updated: 2023/12/22 21:54:00 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/23 17:35:37 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include <deque>
 #include <cstring>
 #include <iostream>
-#include <ctime>
 
 class	PmergeMe {
 
@@ -48,10 +47,6 @@ class	PmergeMe {
 		std::deque<int>::iterator	_deque_binary_search(std::deque<std::pair<int, int> >::iterator val, std::deque<int>::iterator end);
 
 		std::list<int>	_LnoSort;
-
 		std::list<int>	_LSort;
 		std::deque<int>	_DSort;
-
-		std::time_t			_beginL;
-		std::time_t			_beginD;
 };

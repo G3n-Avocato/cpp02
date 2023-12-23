@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 22:12:07 by lamasson          #+#    #+#             */
-/*   Updated: 2023/12/10 19:49:19 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/23 15:57:56 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,6 @@ BitcoinExchange::BitcoinExchange(char* arg) {
 	this->_parsingDataBase(dataDB);
 	std::string	dataIn = this->_checkallfd(arg);
 	this->_parsingInputFile(dataIn);
-/*
-	for (std::map<std::string,double>::iterator it = _DataBase.begin(); it != _DataBase.end(); it++)
-		std::cout << it->first << " " << it ->second << std::endl;
-*/
-}
-
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& src) {
-	*this = src;
-}
-
-BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange& rhs) {
-	if (this != &rhs)
-		this->_DataBase = rhs._DataBase;
-	return (*this);
 }
 
 BitcoinExchange::~BitcoinExchange(void) {
@@ -57,17 +43,18 @@ std::string	BitcoinExchange::_checkallfd(std::string file) const {
 }
 
 void	BitcoinExchange::_parsingDataBase(std::string data) {
-	std::string	tmp;
 	size_t		i = 0;
-	size_t		pos = 0;
-
+	size_t		pos = data.find("\n", i);
+	std::string	tmp = data.substr(i, pos - i);
+	
+	if (!tmp.compare("date,exchange_rate"))
+		i = pos + 1;	
 	while (i < data.size()) {
 		pos = data.find("\n", i);
 		if (pos != std::string::npos) {
 			tmp = data.substr(i, pos - i);
-			if (tmp.compare("date,exchange_rate"))
-				this->_fillDataBase(tmp);
-		i = pos + 1;
+			this->_fillDataBase(tmp);
+			i = pos + 1;
 		}
 		else
 			break ;
@@ -98,17 +85,17 @@ void	BitcoinExchange::_fillDataBase(std::string data) {
 }
 
 void	BitcoinExchange::_parsingInputFile(std::string data) {
-	std::string		tmp;
 	size_t			i = 0;
-	size_t			pos = 0;
-	
+	size_t			pos = data.find("\n", i);
+	std::string		tmp = data.substr(i, pos - i);
+
+	if (!tmp.compare("date | value"))
+		i = pos + 1;
 	while (i < data.size()) {
 		pos = data.find("\n", i);
 		if (pos != std::string::npos) {
 			tmp = data.substr(i, pos - i);
-			if (tmp.compare("date | value")) {
-				this->_parsinglineFile(tmp);
-			}
+			this->_parsinglineFile(tmp);
 			i = pos + 1;
 		}
 		else

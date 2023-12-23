@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:20:28 by lamasson          #+#    #+#             */
-/*   Updated: 2023/12/10 22:48:00 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/23 17:26:01 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,6 @@ RPN::RPN(std::string line) {
 	if (this->_parsingsurfaceRPN(line))
 		throw Error();
 	this->_detailRPN(line);
-}
-
-RPN::RPN(const RPN& src) {
-	(void)src;
-}
-
-RPN& RPN::operator=(const RPN& rhs) {
-	(void)rhs;
-	return (*this);
 }
 
 RPN::~RPN() {
@@ -96,12 +87,19 @@ void	RPN::_myNameIs(std::string tmp) {
 			val = b - a;
 		else if (tmp[0] == '+')
 			val = b + a;
-		else if (tmp[0] == '/')
+		else if (tmp[0] == '/') {
+			if (a == 0)
+				throw ErrorDivZero();
 			val = b / a;
+		}
 		else if (tmp[0] == '*')
 			val = b * a;
 		this->_calcul.push(val);
 	}
+}
+
+const char* RPN::ErrorDivZero::what() const throw() {
+	return ("Error: Divide by Zero Exception\n");
 }
 
 const char*	RPN::Error::what() const throw() {
