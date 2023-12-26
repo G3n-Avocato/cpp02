@@ -6,11 +6,12 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 22:12:07 by lamasson          #+#    #+#             */
-/*   Updated: 2023/12/23 15:57:56 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/26 15:55:22 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
+#include <cctype>
 #include <cfloat>
 #include <fstream>
 #include <sstream>
@@ -107,16 +108,15 @@ void	BitcoinExchange::_parsinglineFile(std::string data){
 
 	size_t		pos = data.find(" | ");
 	std::string	dstr = data.substr(0, pos);
-
-	if (this->_parsingAllDateandValue(dstr, '-') == 1 || this->_validYear(dstr)) {
+	
+	if (this->_parsingAllDateandValue(dstr, '-') == 1 || this->_validYear(dstr) || pos == std::string::npos) {
 		std::cout << "Error: bad input => " << data << std::endl;
 		return ;
 	}
 	
 	pos += 3;
 	std::string	vstr = data.substr(pos, data.size() - pos);
-
-	if (this->_parsingAllDateandValue(vstr, '.') == 1) {
+	if (pos == std::string::npos || vstr[0] == '\0' || this->_parsingAllDateandValue(vstr, '.') == 1) {
 		std::cout << "Error: bad input => " << data << std::endl;
 		return ;
 	}
@@ -133,6 +133,37 @@ void	BitcoinExchange::_parsinglineFile(std::string data){
 	this->_findDateinDB(dstr, val);
 }
 
+
+int	BitcoinExchange::_parsingAllDate(std::string str) {
+	size_t	i = 0;
+	int		b = 0;
+
+	while (i < str.size()) {
+		if (isdigit(str[i]))
+			i++;
+		else if (str[i] == '-') {
+			i++;
+			b++;
+		}
+		else
+			break ;
+	}
+	if (i != str.size() || b != 2)
+		return (1);
+	return (0);
+}
+
+int	BitcoinExchange::_parsingAllValue(std::string str) {
+	size_t i = 0;
+
+	if (str[i] == '-')
+		return (1);
+	while (i < str.size()) {
+		if (isdigit(str[i]))
+
+	}
+}
+
 int	BitcoinExchange::_parsingAllDateandValue(std::string str, char tok) const {
 	int		b = 0;
 	size_t	i = 0;
@@ -147,11 +178,11 @@ int	BitcoinExchange::_parsingAllDateandValue(std::string str, char tok) const {
 		else
 			break ;
 	}
-	if (i != str.size())
+	if (i != str.size()) //all
 		return (1);
-	if (tok == '.' && b > 1)
+	if (tok == '.' && b > 1) //valeur
 		return (1);
-	if (tok == '-' && b != 2)
+	if (tok == '-' && b != 2) //date
 		return (1);
 	return (0);
 }
