@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 22:12:07 by lamasson          #+#    #+#             */
-/*   Updated: 2023/12/26 15:55:22 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/27 18:50:34 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <fstream>
 #include <sstream>
 #include <cstdlib>
+#include <string>
 
 BitcoinExchange::BitcoinExchange(char* arg) {
 	std::string	dataDB = this->_checkallfd("data.csv");
@@ -57,8 +58,11 @@ void	BitcoinExchange::_parsingDataBase(std::string data) {
 			this->_fillDataBase(tmp);
 			i = pos + 1;
 		}
-		else
-			break ;
+		else if (pos == std::string::npos) {
+			tmp = data.substr(i, data.size() - i);
+			this->_fillDataBase(tmp);
+			i = data.size();
+		}
 	}
 }
 
@@ -67,7 +71,7 @@ void	BitcoinExchange::_fillDataBase(std::string data) {
 	size_t		pos = data.find(",");
 	std::string	dstr = data.substr(0, pos);
 	
-	if (this->_parsingAllDateandValue(dstr, '-') == 1)
+	if (pos == std::string::npos || this->_parsingAllDate(dstr) == 1)
 		throw ErrorBadInputDataBase();
 	if (this->_validYear(dstr))
 		throw ErrorInvalidDateDB();
@@ -75,7 +79,7 @@ void	BitcoinExchange::_fillDataBase(std::string data) {
 	pos++;
 	std::string	vstr = data.substr(pos, data.size() - pos);
 	
-	if (this->_parsingAllDateandValue(vstr, '.') == 1)
+	if (pos == std::string::npos || vstr[0] == '\0'|| this->_parsingAllValue(vstr) == 1)
 		throw ErrorBadInputDataBase();
 	
 	double val = strtod(vstr.c_str(), NULL);
@@ -99,8 +103,11 @@ void	BitcoinExchange::_parsingInputFile(std::string data) {
 			this->_parsinglineFile(tmp);
 			i = pos + 1;
 		}
-		else
-			break ;
+		else if (pos == std::string::npos) {
+			tmp = data.substr(i, data.size() - i);
+			this->_parsinglineFile(tmp);
+			i = data.size();
+		}
 	}
 }
 
@@ -109,14 +116,14 @@ void	BitcoinExchange::_parsinglineFile(std::string data){
 	size_t		pos = data.find(" | ");
 	std::string	dstr = data.substr(0, pos);
 	
-	if (this->_parsingAllDateandValue(dstr, '-') == 1 || this->_validYear(dstr) || pos == std::string::npos) {
+	if (this->_parsingAllDate(dstr) == 1 || this->_validYear(dstr) || pos == std::string::npos) {
 		std::cout << "Error: bad input => " << data << std::endl;
 		return ;
 	}
 	
 	pos += 3;
 	std::string	vstr = data.substr(pos, data.size() - pos);
-	if (pos == std::string::npos || vstr[0] == '\0' || this->_parsingAllDateandValue(vstr, '.') == 1) {
+	if (pos == std::string::npos || vstr[0] == '\0' || this->_parsingAllValue(vstr) == 1) {
 		std::cout << "Error: bad input => " << data << std::endl;
 		return ;
 	}
@@ -132,7 +139,6 @@ void	BitcoinExchange::_parsinglineFile(std::string data){
 	}
 	this->_findDateinDB(dstr, val);
 }
-
 
 int	BitcoinExchange::_parsingAllDate(std::string str) {
 	size_t	i = 0;
@@ -154,36 +160,21 @@ int	BitcoinExchange::_parsingAllDate(std::string str) {
 }
 
 int	BitcoinExchange::_parsingAllValue(std::string str) {
+	int		p = 0;
 	size_t i = 0;
 
 	if (str[i] == '-')
-		return (1);
+		i++;
 	while (i < str.size()) {
 		if (isdigit(str[i]))
-
-	}
-}
-
-int	BitcoinExchange::_parsingAllDateandValue(std::string str, char tok) const {
-	int		b = 0;
-	size_t	i = 0;
-
-	while (i < str.size()) {
-		if (isdigit(str[i]) || (tok == '.' && str[i] == '-'))
 			i++;
-		else if (str[i] == tok) {
-			b++;
+		else if (str[i] == '.' && isdigit(str[i - 1]) && isdigit(str[i + 1]) && p == 0) {
+			p++;
 			i++;
 		}
 		else
-			break ;
+			return (1);
 	}
-	if (i != str.size()) //all
-		return (1);
-	if (tok == '.' && b > 1) //valeur
-		return (1);
-	if (tok == '-' && b != 2) //date
-		return (1);
 	return (0);
 }
 
@@ -210,10 +201,10 @@ int		BitcoinExchange::_validYear(std::string	data) const {
 	//variable leap year. 0 = 365 / 1 = 366
 	int		bis = 0;
 	if (year % 4 == 0) {
-		if (year % 100 == 0) {
-			if (year % 400 == 0)
-				bis = 1;
-		}
+		if (year % 100 == 0 && year % 400 == 0)
+			bis = 1;
+		if (year % 100 != 0)
+			bis = 1;
 	}
 	//month check
 	if (month < 1 || month > 12)

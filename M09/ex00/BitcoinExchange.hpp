@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 19:07:19 by lamasson          #+#    #+#             */
-/*   Updated: 2023/12/23 15:05:25 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/27 16:57:56 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ class	BitcoinExchange {
 		void		_fillDataBase(std::string);
 		void		_parsingInputFile(std::string);
 		void		_parsinglineFile(std::string);
-		int			_parsingAllDateandValue(std::string, char) const;
+		
+		int			_parsingAllDate(std::string);
+		int			_parsingAllValue(std::string);
+
 		int			_validYear(std::string) const;
 		void		_findDateinDB(std::string, double);
 
