@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dummy.cpp                                          :+:      :+:    :+:   */
+/*   Polymorph.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 00:17:49 by lamasson          #+#    #+#             */
-/*   Updated: 2023/10/20 00:21:08 by lamasson         ###   ########.fr       */
+/*   Created: 2023/12/28 20:45:17 by lamasson          #+#    #+#             */
+/*   Updated: 2023/12/28 20:46:47 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Dummy.hpp"
+#include "Polymorph.hpp"
 
-Dummy::Dummy(void) : ATarget("Target Practice Dummy") {
-	this->_type = "Target Practice Dummy";
+Polymorph::Polymorph(void) : ASpell("Polymorph", "turned into a critter") {
 }
 
-Dummy::Dummy(const Dummy& src) : ATarget(src) {
-	*this = src;
+Polymorph::~Polymorph() {
 }
 
-Dummy&	Dummy::operator=(const Dummy &rhs) {
-	(void)rhs;
-	return(*this);
-}
-
-Dummy::~Dummy(void) {
-}
-
-Dummy*	Dummy::clone(void) const {
-	Dummy*	tmp = new Dummy();
+Polymorph*	Polymorph::clone() const {
+	Polymorph*	tmp = new Polymorph();
 	return (tmp);
 }

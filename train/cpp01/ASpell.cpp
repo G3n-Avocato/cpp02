@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 14:57:48 by lamasson          #+#    #+#             */
-/*   Updated: 2023/10/19 15:09:16 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/28 19:55:22 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,12 @@ ASpell::ASpell(std::string const& name, std::string const& effects) : _name(name
 }
 
 ASpell::ASpell(const ASpell& src) {
-	(void)src;
+	*this = src;
 }
 
 ASpell&	ASpell::operator=(const ASpell &rhs) {
-	(void)rhs;
+	this->_name = rhs.getName();
+	this->_effects = rhs.getEffects();
 	return (*this);
 }
 

@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 14:51:17 by lamasson          #+#    #+#             */
-/*   Updated: 2023/10/19 15:09:45 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/28 20:24:25 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,21 @@
 #include "ASpell.hpp"
 
 ATarget::ATarget(void) {
-
 }
 
 ATarget::ATarget(std::string const& type) : _type(type) {
-
 }
 
 ATarget::ATarget(const ATarget& src) {
-(void)src;
+	*this = src;
 }
 
 ATarget&	ATarget::operator=(const ATarget& rhs) {
-	(void)rhs;
+	this->_type = rhs.getType();
 	return (*this);
 }
 
 ATarget::~ATarget(void) {
-
 }
 
 std::string const&	ATarget::getType(void) const {

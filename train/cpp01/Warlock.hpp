@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 11:45:54 by lamasson          #+#    #+#             */
-/*   Updated: 2023/10/27 15:47:26 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/28 19:29:26 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define WARLOCK_HPP
 
 #include <iostream>
+#include <map>
 #include "ASpell.hpp"
 #include "ATarget.hpp"
 
@@ -35,8 +36,7 @@ class	Warlock {
 
 	private:
 
-		ASpell**	_learnSpell;
-		int			_size;
+		std::map<std::string, ASpell*>	_learnSpell;
 
 		std::string const _name;
 		std::string	_title;

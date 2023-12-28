@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dummy.hpp                                          :+:      :+:    :+:   */
+/*   Dummy.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/20 00:14:16 by lamasson          #+#    #+#             */
-/*   Updated: 2023/10/20 00:16:44 by lamasson         ###   ########.fr       */
+/*   Created: 2023/10/20 00:17:49 by lamasson          #+#    #+#             */
+/*   Updated: 2023/12/28 20:12:40 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DUMMY_HPP
-# define DUMMY_HPP
+#include "Dummy.hpp"
 
-#include "ATarget.hpp"
+Dummy::Dummy(void) : ATarget("Target Practice Dummy") {
+}
 
-class	Dummy : public ATarget {
-	public:
-		Dummy(void);
-		Dummy(const Dummy& src);
-		Dummy&	operator=(const Dummy& rhs);
-		~Dummy(void);
+Dummy::~Dummy(void) {
+}
 
-		Dummy*	clone(void) const;
-};
-
-#endif
+Dummy*	Dummy::clone(void) const {
+	Dummy*	tmp = new Dummy();
+	return (tmp);
+}

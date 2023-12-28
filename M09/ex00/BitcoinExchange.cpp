@@ -16,7 +16,6 @@
 #include <fstream>
 #include <sstream>
 #include <cstdlib>
-#include <string>
 
 BitcoinExchange::BitcoinExchange(char* arg) {
 	std::string	dataDB = this->_checkallfd("data.csv");
