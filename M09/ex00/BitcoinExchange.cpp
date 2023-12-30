@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 22:12:07 by lamasson          #+#    #+#             */
-/*   Updated: 2023/12/27 18:50:34 by lamasson         ###   ########.fr       */
+/*   Updated: 2023/12/30 15:15:13 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,7 +228,7 @@ void	BitcoinExchange::_findDateinDB(std::string dstr, double val) {
 		it = this->_DataBase.lower_bound(dstr);
 		it--;
 	}
-	if (it == this->_DataBase.end())
+	if (it == this->_DataBase.end() || it->first > dstr)
 		std::cout << "Error: file date out of range database." << std::endl;
 	else
 		std::cout << dstr << " => " << val << " = " << (val * it->second) << std::endl;
