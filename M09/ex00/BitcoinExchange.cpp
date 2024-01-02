@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 22:12:07 by lamasson          #+#    #+#             */
-/*   Updated: 2023/12/30 15:15:13 by lamasson         ###   ########.fr       */
+/*   Updated: 2024/01/02 17:38:31 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ int	BitcoinExchange::_parsingAllDate(std::string str) {
 		else
 			break ;
 	}
-	if (i != str.size() || b != 2)
+	if (i != str.size() || b != 2 || i != 10)
 		return (1);
 	return (0);
 }
