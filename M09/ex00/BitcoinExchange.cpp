@@ -6,7 +6,7 @@
 /*   By: lamasson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 22:12:07 by lamasson          #+#    #+#             */
-/*   Updated: 2024/01/02 17:38:31 by lamasson         ###   ########.fr       */
+/*   Updated: 2024/01/03 13:07:46 by lamasson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,6 +207,9 @@ int		BitcoinExchange::_validYear(std::string	data) const {
 	}
 	//month check
 	if (month < 1 || month > 12)
+		return (1);
+	//day check
+	if (day < 1 || day > 31)
 		return (1);
 	//day check 30 or 31
 	if (day == 31) {
